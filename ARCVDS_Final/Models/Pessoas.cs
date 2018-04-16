@@ -10,7 +10,9 @@ namespace ARCVDS_Final.Models {
         public Pessoas() {
             this.ListaPagamentos = new HashSet<Pagamentos>();
             this.ListaQuotas = new HashSet<Quotas>();
+            //N/M
             this.Beneficios = new HashSet<Beneficios>();
+            this.ListaEventos = new HashSet<Eventos>();
         }
 
         [Required]
@@ -79,6 +81,10 @@ namespace ARCVDS_Final.Models {
         /*******************************************************************/
 
         public virtual ICollection<Beneficios> Beneficios { get; set; }
+
+        public virtual ICollection<Eventos> ListaEventos {
+            get;set;
+        }
 
     }
 }

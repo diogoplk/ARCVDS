@@ -8,7 +8,7 @@ namespace ARCVDS_Final.Models {
     public class Eventos {
 
         public Eventos() {
-            this.Funcionario = new HashSet<Funcionarios>();
+            this.Pessoas = new HashSet<Pessoas>();
         }
 
         [Required]
@@ -40,7 +40,10 @@ namespace ARCVDS_Final.Models {
 
         /**********N/M*****************/
         /*****************************************************/
-        public virtual ICollection<Funcionarios> Funcionario { get; set; }
+        //public virtual ICollection<Funcionarios> Funcionario { get; set; }
+        public virtual ICollection<Pessoas> Pessoas {
+            get; set;
+        }
 
     }
 }

@@ -9,7 +9,7 @@ namespace ARCVDS_Final.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(ARCVDS_Final.Models.SociosDB context)

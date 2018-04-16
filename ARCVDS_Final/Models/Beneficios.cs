@@ -24,7 +24,7 @@ namespace ARCVDS_Final.Models {
         [Display(Name = "Breve Descricao")]
         public string Descricao { get; set; }
         /*************************/
-        /**********************************************/
+        /**************N/M********************************/
         public virtual ICollection<Pessoas> Pessoa { get; set; }
 
     }

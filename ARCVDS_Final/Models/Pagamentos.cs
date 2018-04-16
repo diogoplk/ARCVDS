@@ -9,6 +9,8 @@ namespace ARCVDS_Final.Models {
     public class Pagamentos {
 
         public Pagamentos() {
+
+
         }
 
         [Key]

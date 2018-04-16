@@ -18,8 +18,33 @@ namespace ARCVDS_Final.Models {
 
         [Required]
         [DataType(DataType.Date)]
-        [Display(Name = "Ano da Quota")]
+        [Display(Name = "Ano/s da Quota")]
         public DateTime ano_Quota { get; set; }
+
+        [Required]
+        [Display(Name = "Valor Quota Anual")]
+        public Decimal valorQuotaAnual {
+            get; set;
+        }
+
+        [Required]
+        [DataType(DataType.Date)]
+        [Display(Name = "Mes/s da Quota")]
+        public DateTime mes_Quota {
+            get; set;
+        }
+
+        [Required]
+        [Display(Name = "Valor Quota Mensal")]
+        public Decimal valorQuotaMensal {
+            get;set;
+        }
+
+        [Required]
+        [Display(Description = ("Quota paga ou não paga"))]
+        public Boolean Paga {
+            get;set;
+        }
 
         /**********************/
         [ForeignKey("Pessoa")]
@@ -28,6 +53,6 @@ namespace ARCVDS_Final.Models {
 
         /*************************/
         public virtual ICollection<Pagamentos> ListaPagamentos { get; set; }
-
+          
     }
 }
