@@ -1,6 +1,8 @@
 namespace ARCVDS_Final.Migrations
 {
+    using Models;
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
@@ -11,21 +13,16 @@ namespace ARCVDS_Final.Migrations
         {
             AutomaticMigrationsEnabled = true;
         }
+        protected override void Seed ( ARCVDS_Final.Models.SociosDB context) {
 
-        protected override void Seed(ARCVDS_Final.Models.SociosDB context)
-        {
-            //  This method will be called after migrating to the latest version.
+            var e = new List<Eventos> {
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+                new Eventos {id_Evento=1, Descricao="s", Dia_Evento= new DateTime(2015,1,1), imagens_Evento="Serra.jpg", nome_Evento="s", nome_Patrocinador="a", Pessoas=null }
+            };
+            e.ForEach (ee => context.Eventos.AddOrUpdate (eee => eee.nome_Evento,ee));
+            context.SaveChanges ();
         }
+
+
     }
 }

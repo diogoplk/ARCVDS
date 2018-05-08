@@ -1,0 +1,58 @@
+﻿@model ARCVDS_Final.Models.Eventos
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Eventos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nome_Evento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nome_Evento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dia_Evento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dia_Evento)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.imagens_Evento)
+        </dt>
+
+        <dd>  
+            @*Html.DisplayFor(model => model.imagens_Evento)*@
+            <img src="~/Imagens/@Model.imagens_Evento" width="100" height="100"/>
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nome_Patrocinador)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nome_Patrocinador)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_Evento }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

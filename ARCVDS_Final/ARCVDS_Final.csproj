@@ -196,8 +196,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BeneficiosController.cs" />
+    <Compile Include="Controllers\EventosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PessoasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -205,6 +208,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Beneficios.cs" />
     <Compile Include="Models\Eventos.cs" />
+    <Compile Include="Models\FotografiasEventos.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Pagamentos.cs" />
@@ -221,6 +225,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Imagens\Bernardo.jpg" />
+    <Content Include="Imagens\plaka.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -272,6 +278,21 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Pessoas\Create.cshtml" />
+    <Content Include="Views\Pessoas\Delete.cshtml" />
+    <Content Include="Views\Pessoas\Details.cshtml" />
+    <Content Include="Views\Pessoas\Edit.cshtml" />
+    <Content Include="Views\Pessoas\Index.cshtml" />
+    <Content Include="Views\Beneficios\Create.cshtml" />
+    <Content Include="Views\Beneficios\Delete.cshtml" />
+    <Content Include="Views\Beneficios\Details.cshtml" />
+    <Content Include="Views\Beneficios\Edit.cshtml" />
+    <Content Include="Views\Beneficios\Index.cshtml" />
+    <Content Include="Views\Eventos\Create.cshtml" />
+    <Content Include="Views\Eventos\Delete.cshtml" />
+    <Content Include="Views\Eventos\Details.cshtml" />
+    <Content Include="Views\Eventos\Edit.cshtml" />
+    <Content Include="Views\Eventos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

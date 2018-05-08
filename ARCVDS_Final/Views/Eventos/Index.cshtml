@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ARCVDS_Final.Models.Eventos>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nome_Evento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dia_Evento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.imagens_Evento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nome_Patrocinador)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nome_Evento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dia_Evento)
+        </td>
+        <td>
+            @*  @Html.DisplayFor(modelItem => item.imagens_Evento)*@
+            @*@Html.DisplayFor(modelItem => agente.Fotografia)*@
+
+
+                <a href="~/imagens/@item.imagens_Evento">
+                    <img src="~/imagens/@item.imagens_Evento" width="50" height="50" />
+                </a>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nome_Patrocinador)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id_Evento }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id_Evento }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id_Evento })
+        </td>
+    </tr>
+}
+
+</table>
