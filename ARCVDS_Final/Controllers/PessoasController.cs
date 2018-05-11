@@ -26,7 +26,8 @@ namespace ARCVDS_Final.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction ("Index");
             }
             Pessoas pessoas = db.Pessoas.Find(id);
             if (pessoas == null)
@@ -123,12 +124,14 @@ namespace ARCVDS_Final.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+                return RedirectToAction ("Index");
             }
             Pessoas pessoas = db.Pessoas.Find(id);
             if (pessoas == null)
             {
-                return HttpNotFound();
+                return RedirectToAction ("Index");
             }
             return View(pessoas);
         }
@@ -139,9 +142,16 @@ namespace ARCVDS_Final.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Pessoas pessoas = db.Pessoas.Find(id);
-            db.Pessoas.Remove(pessoas);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+
+            try {
+                db.Pessoas.Remove (pessoas);
+                db.SaveChanges ();
+                return RedirectToAction ("Index");
+            }catch(Exception) {
+                ModelState.AddModelError ("", string.Format ("aconteceu um erro com a eliminação do Agente , porque há multas associadas a ele.", pessoas.Nome));
+            }
+            return View (pessoas);
+
         }
 
         protected override void Dispose(bool disposing)

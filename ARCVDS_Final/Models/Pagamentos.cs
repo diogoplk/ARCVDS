@@ -10,7 +10,6 @@ namespace ARCVDS_Final.Models {
 
         public Pagamentos() {
 
-
         }
 
         [Key]

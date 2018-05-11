@@ -15,12 +15,12 @@ namespace ARCVDS_Final.Models {
         [Required]
         [Key]
         public int id_Quota { get; set; }
-
+        
         [Required]
         [DataType(DataType.Date)]
         [Display(Name = "Ano/s da Quota")]
         public DateTime ano_Quota { get; set; }
-
+        /*
         [Required]
         [Display(Name = "Valor Quota Anual")]
         public Decimal valorQuotaAnual {
@@ -37,6 +37,13 @@ namespace ARCVDS_Final.Models {
         [Required]
         [Display(Name = "Valor Quota Mensal")]
         public Decimal valorQuotaMensal {
+            get;set;
+        }
+        */
+
+        [Required]
+        [Display(Description ="Quantidade paga/meses")]
+        public string Descricao {
             get;set;
         }
 
