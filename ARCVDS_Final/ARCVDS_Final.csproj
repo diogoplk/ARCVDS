@@ -205,9 +205,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201805122317582_initial1.cs" />
-    <Compile Include="Migrations\201805122317582_initial1.Designer.cs">
-      <DependentUpon>201805122317582_initial1.cs</DependentUpon>
+    <Compile Include="Migrations\201805130146170_vaitoma.cs" />
+    <Compile Include="Migrations\201805130146170_vaitoma.Designer.cs">
+      <DependentUpon>201805130146170_vaitoma.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -315,8 +315,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201805122317582_initial1.resx">
-      <DependentUpon>201805122317582_initial1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805130146170_vaitoma.resx">
+      <DependentUpon>201805130146170_vaitoma.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

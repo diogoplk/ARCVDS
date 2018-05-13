@@ -7,13 +7,13 @@ namespace ARCVDS_Final.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class initial1 : IMigrationMetadata
+    public sealed partial class vaitoma : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(initial1));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(vaitoma));
         
         string IMigrationMetadata.Id
         {
-            get { return "201805122317582_initial1"; }
+            get { return "201805130146170_vaitoma"; }
         }
         
         string IMigrationMetadata.Source

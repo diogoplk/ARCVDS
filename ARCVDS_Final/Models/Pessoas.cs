@@ -32,7 +32,7 @@ namespace ARCVDS_Final.Models {
         [Display(Name = "Data Nascimento")]
         public DateTime data_Nascimento { get; set; }
 
-        [Required]
+        //[Required]
         [StringLength(1)]
         [RegularExpression ("[M]|[F]",ErrorMessage = "Insira F para Femino, M para Masculino")]
         [Display(Name = "Sexo")]

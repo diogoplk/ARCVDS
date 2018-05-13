@@ -11,6 +11,7 @@ namespace ARCVDS_Final.Migrations
         {
             AutomaticMigrationsEnabled = true;
             AutomaticMigrationDataLossAllowed = false;
+
         }
 
         protected override void Seed(ARCVDS_Final.Models.SociosDB context)
