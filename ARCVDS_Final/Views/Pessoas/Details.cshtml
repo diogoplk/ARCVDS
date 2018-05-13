@@ -1,0 +1,101 @@
+﻿@model ARCVDS_Final.Models.Pessoas
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Pessoas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.data_Nascimento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.data_Nascimento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sexo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sexo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Morada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Morada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Codigo_Postal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Codigo_Postal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nacionalidade)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nacionalidade)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Foto)
+        </dt>
+
+        <dd>
+            @*Html.DisplayFor(model => model.Foto)*@
+
+            <img src="~/Imagens/@Model.Foto" height="50" width="50" />
+
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numeroTelefone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numeroTelefone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numeroTelemovel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numeroTelemovel)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Pessoa_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
