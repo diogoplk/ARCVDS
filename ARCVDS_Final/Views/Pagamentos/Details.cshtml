@@ -1,0 +1,50 @@
+﻿@model ARCVDS_Final.Models.Pagamentos
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Pagamentos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Quota.Descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quota.Descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Valor_Pagamento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Valor_Pagamento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.data_Pagamento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.data_Pagamento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ultima_Ano_Pago)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ultima_Ano_Pago)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_Pagamento }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

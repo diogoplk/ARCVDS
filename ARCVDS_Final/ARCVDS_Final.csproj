@@ -197,9 +197,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BeneficiosController.cs" />
+    <Compile Include="Controllers\EventosController.cs" />
+    <Compile Include="Controllers\FotografiasEventosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PagamentosController.cs" />
     <Compile Include="Controllers\PessoasController.cs" />
+    <Compile Include="Controllers\QuotasController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
     <Compile Include="Controllers\UserAdminController.cs" />
     <Compile Include="Global.asax.cs">
@@ -231,6 +236,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="ImagensEventos\477114.jpg" />
+    <Content Include="ImagensEventos\Eventos_2.jpg" />
+    <Content Include="ImagensEventos\Serra.jpg" />
     <Content Include="Imagens\Bernardo.jpg" />
     <Content Include="Imagens\plaka.jpg" />
     <Content Include="Scripts\bootstrap.js" />
@@ -302,6 +310,31 @@
     <Content Include="Views\Pessoas\Details.cshtml" />
     <Content Include="Views\Pessoas\Edit.cshtml" />
     <Content Include="Views\Pessoas\Index.cshtml" />
+    <Content Include="Views\Beneficios\Create.cshtml" />
+    <Content Include="Views\Beneficios\Delete.cshtml" />
+    <Content Include="Views\Beneficios\Details.cshtml" />
+    <Content Include="Views\Beneficios\Edit.cshtml" />
+    <Content Include="Views\Beneficios\Index.cshtml" />
+    <Content Include="Views\Eventos\Create.cshtml" />
+    <Content Include="Views\Eventos\Delete.cshtml" />
+    <Content Include="Views\Eventos\Details.cshtml" />
+    <Content Include="Views\Eventos\Edit.cshtml" />
+    <Content Include="Views\Eventos\Index.cshtml" />
+    <Content Include="Views\FotografiasEventos\Create.cshtml" />
+    <Content Include="Views\FotografiasEventos\Delete.cshtml" />
+    <Content Include="Views\FotografiasEventos\Details.cshtml" />
+    <Content Include="Views\FotografiasEventos\Edit.cshtml" />
+    <Content Include="Views\FotografiasEventos\Index.cshtml" />
+    <Content Include="Views\Pagamentos\Create.cshtml" />
+    <Content Include="Views\Pagamentos\Delete.cshtml" />
+    <Content Include="Views\Pagamentos\Details.cshtml" />
+    <Content Include="Views\Pagamentos\Edit.cshtml" />
+    <Content Include="Views\Pagamentos\Index.cshtml" />
+    <Content Include="Views\Quotas\Create.cshtml" />
+    <Content Include="Views\Quotas\Delete.cshtml" />
+    <Content Include="Views\Quotas\Details.cshtml" />
+    <Content Include="Views\Quotas\Edit.cshtml" />
+    <Content Include="Views\Quotas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

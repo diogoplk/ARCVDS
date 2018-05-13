@@ -1,0 +1,58 @@
+﻿@model ARCVDS_Final.Models.Quotas
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Quotas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Pessoa.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pessoa.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ano_Quota)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ano_Quota)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Valor_Quota)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Valor_Quota)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Paga)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Paga)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_Quota }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

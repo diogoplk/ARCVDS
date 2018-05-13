@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -25,6 +26,8 @@ namespace ARCVDS_Final.Models {
         public string Descricao { get; set; }
         /*************************/
         /**************N/M********************************/
+
+       
         public virtual ICollection<Pessoas> Pessoa { get; set; }
 
     }

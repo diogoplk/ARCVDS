@@ -1,0 +1,56 @@
+﻿@model ARCVDS_Final.Models.Eventos
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Eventos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nome_Evento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nome_Evento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dia_Evento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dia_Evento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nome_Patrocinador)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nome_Patrocinador)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

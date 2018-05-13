@@ -12,7 +12,7 @@ namespace ARCVDS_Final.Models {
             //this.ListaPagamentos = new HashSet<Pagamentos>();
             this.ListaQuotas = new HashSet<Quotas>();
             //N/M
-            this.Beneficios = new HashSet<Beneficios>();
+            this.ListaBeneficios = new HashSet<Beneficios>();
             this.ListaEventos = new HashSet<Eventos>();
         }
 
@@ -77,6 +77,10 @@ namespace ARCVDS_Final.Models {
         [Display(Name = "Telemóvel")]
         public string numeroTelemovel { get; set; }
 
+        [Required]
+        [Display(Name ="Data de entrada para a associação")]
+        public DateTime dataEntradaClube { get; set; }
+
         /********1/N*****Quotas**********/
         /*******************************************************************/
 
@@ -87,7 +91,7 @@ namespace ARCVDS_Final.Models {
         /********N/M******Beneficios*********/
         /*******************************************************************/
 
-        public virtual ICollection<Beneficios> Beneficios {
+        public virtual ICollection<Beneficios> ListaBeneficios {
             get; set;
         }
 

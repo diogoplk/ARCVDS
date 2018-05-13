@@ -142,9 +142,16 @@ namespace ARCVDS_Final.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Pessoas pessoas = db.Pessoas.Find(id);
-            db.Pessoas.Remove(pessoas);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try {
+                db.Pessoas.Remove (pessoas);
+                db.SaveChanges ();
+                return RedirectToAction ("Index");
+            } catch(Exception) {
+                ModelState.AddModelError ("",
+                       string.Format ("Não foi possível remover o Agente '{0}', porque existem {1} multas associadas a ele.",
+                                      pessoas.Nome));
+            }
+            return View (pessoas);
         }
 
         protected override void Dispose(bool disposing)
