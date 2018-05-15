@@ -16,9 +16,11 @@ namespace ARCVDS_Final.Controllers
         private SociosDB db = new SociosDB();
 
         // GET: Pessoas
-        public ActionResult Index()
+        public ActionResult Index(string pesquisa)
         {
-            return View(db.Pessoas.ToList());
+            //SociosDB db = new SociosDB();
+            
+            return View(db.Pessoas.Where(x=>x.Nome.StartsWith(pesquisa)|| pesquisa==null).ToList());
         }
 
         // GET: Pessoas/Details/5

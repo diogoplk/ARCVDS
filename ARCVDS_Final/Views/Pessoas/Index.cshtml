@@ -4,16 +4,20 @@
     ViewBag.Title = "Index";
 }
 
+
+
 <h2>Index</h2>
 
+@using (Html.BeginForm("Index", "Pessoas", FormMethod.Get))
+{
+    @Html.TextBox("pesquisa")<input type="submit" value="Search" class="form-control"/>
+}
+
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", FormMethod.Get)
 </p>
-<div>
-
-    <input type="text" id="Search" placeholder="Search" class="form-control"/>
-</div>
-
+<br/>
+<br/>
 <table class="table">
     <tr>
         <th>
@@ -51,11 +55,19 @@
         </th>
         <th></th>
     </tr>
-
-@foreach (var item in Model) {
-    <tr class="Search">
+    
+@if (Model.Count() == 0)
+{
+    <tr>
+        <td>Erro</td>
+    </tr>
+}
+else { 
+    foreach (var item in Model) {
+    <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Nome)
+            @*Html.DisplayFor(modelItem => item.Nome)*@
+            @item.Nome
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.data_Nascimento)
@@ -88,31 +100,11 @@
             @Html.DisplayFor(modelItem => item.dataEntradaClube)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Pessoa_ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Pessoa_ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Pessoa_ID })
+            @Html.ActionLink("Edit", "Edit", new {id = item.Pessoa_ID}) |
+            @Html.ActionLink("Details", "Details", new {id = item.Pessoa_ID}) |
+            @Html.ActionLink("Delete", "Delete", new {id = item.Pessoa_ID})
         </td>
     </tr>
+    }
 }
-
 </table>
-
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script>
-    $(document).ready(function () {
-        function Contains(text_one, text_two) {
-            if(text_one.indexOf(text_two)!=-1) {
-                return true;
-            }
-        }
-        $("#Search").keyup(function () {
-            var searchText = $("#Search").val().toLowerCase();
-            if(!Contains($(this).text().toLowerCase,searchText)) {
-                $(this).hide();
-            }
-            else {
-                $(this).show();
-            }
-        })
-    })
-</script>
