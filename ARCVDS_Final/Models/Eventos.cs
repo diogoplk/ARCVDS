@@ -34,16 +34,12 @@ namespace ARCVDS_Final.Models {
         [DataType(DataType.Date)]
         [Display(Name = "Dia")]
         public DateTime Dia_Evento { get; set; }
-
-        //public string imagens_Evento { get; set; }
-
-
         /*
-        public IEnumerable<HttpPostedFileBase> imagens_Evento {
-            get;set;
-        }
+        [Required]
+        [DataType(DataType.Time)]
+        [Display(Name ="Hora")]
+        public DateTime Hora_Evento { get; set; }
         */
-
         [Required]
         [StringLength(30)]
         [Display(Name = "Patrocinadores")]

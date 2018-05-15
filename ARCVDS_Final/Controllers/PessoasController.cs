@@ -26,14 +26,12 @@ namespace ARCVDS_Final.Controllers
         {
             if (id == null)
             {
-                //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                return RedirectToAction ("Index");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Pessoas pessoas = db.Pessoas.Find(id);
             if (pessoas == null)
             {
-                //return HttpNotFound();
-                return RedirectToAction ("Index");
+                return HttpNotFound();
             }
             return View(pessoas);
         }
@@ -49,14 +47,15 @@ namespace ARCVDS_Final.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Pessoa_ID,Nome,data_Nascimento,Sexo,Morada,Codigo_Postal,Nacionalidade,Email,Foto,numeroTelefone,numeroTelemovel")]
-        Pessoas pessoas,HttpPostedFileBase UploadFoto)
+        public ActionResult Create([Bind(Include = "Pessoa_ID,Nome,data_Nascimento,Sexo,Morada,Codigo_Postal,Nacionalidade,Email,Foto,numeroTelefone,numeroTelemovel,dataEntradaClube")]
+        HttpPostedFileBase UploadFoto,Pessoas pessoas)
         {
             int novoID = 0;
 
             if(db.Pessoas.Count () == 0) {
                 novoID = 1;
-            } else {
+            }
+            else {
 
                 novoID = db.Pessoas.Max (p => p.Pessoa_ID) + 1;
             }
@@ -70,19 +69,19 @@ namespace ARCVDS_Final.Controllers
 
                 pessoas.Foto = nomeFotografia;
 
-            } else {
+            }
+            else {
                 ModelState.AddModelError ("","Não foi fornecida uma imagem..."); // gera MSG de erro
                 return View (pessoas);
             }
-            if (ModelState.IsValid)
-            {
-                db.Pessoas.Add(pessoas);
-                db.SaveChanges();
+            if(ModelState.IsValid) {
+                db.Pessoas.Add (pessoas);
+                db.SaveChanges ();
                 UploadFoto.SaveAs (caminhoParaFotografia);
-                return RedirectToAction("Index");
+                return RedirectToAction ("Index");
             }
 
-            return View(pessoas);
+            return View (pessoas);
         }
 
         // GET: Pessoas/Edit/5
@@ -90,14 +89,12 @@ namespace ARCVDS_Final.Controllers
         {
             if (id == null)
             {
-                //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                return RedirectToAction ("Index");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Pessoas pessoas = db.Pessoas.Find(id);
             if (pessoas == null)
             {
-                //return HttpNotFound();
-                return RedirectToAction ("Index");
+                return HttpNotFound();
             }
             return View(pessoas);
         }
@@ -107,7 +104,7 @@ namespace ARCVDS_Final.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Pessoa_ID,Nome,data_Nascimento,Sexo,Morada,Codigo_Postal,Nacionalidade,Email,Foto,numeroTelefone,numeroTelemovel")] Pessoas pessoas)
+        public ActionResult Edit([Bind(Include = "Pessoa_ID,Nome,data_Nascimento,Sexo,Morada,Codigo_Postal,Nacionalidade,Email,Foto,numeroTelefone,numeroTelemovel,dataEntradaClube")] Pessoas pessoas)
         {
             if (ModelState.IsValid)
             {
@@ -123,15 +120,12 @@ namespace ARCVDS_Final.Controllers
         {
             if (id == null)
             {
-                //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                return RedirectToAction ("Index");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Pessoas pessoas = db.Pessoas.Find(id);
             if (pessoas == null)
             {
-                //return HttpNotFound();
-                return RedirectToAction ("Index");
-
+                return HttpNotFound();
             }
             return View(pessoas);
         }
@@ -142,14 +136,14 @@ namespace ARCVDS_Final.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Pessoas pessoas = db.Pessoas.Find(id);
+
             try {
                 db.Pessoas.Remove (pessoas);
                 db.SaveChanges ();
                 return RedirectToAction ("Index");
-            } catch(Exception) {
-                ModelState.AddModelError ("",
-                       string.Format ("Não foi possível remover o Agente '{0}', porque existem {1} multas associadas a ele.",
-                                      pessoas.Nome));
+            }
+            catch(Exception) {
+                ModelState.AddModelError ("",String.Format ("nao foi possivel"));
             }
             return View (pessoas);
         }

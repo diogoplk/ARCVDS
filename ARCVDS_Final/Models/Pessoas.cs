@@ -18,7 +18,7 @@ namespace ARCVDS_Final.Models {
 
         [Required]
         [Key]
-        //[DatabaseGenerated (DatabaseGeneratedOption.None)]
+        [DatabaseGenerated (DatabaseGeneratedOption.None)]
         public int Pessoa_ID { get; set; }
 
         [Required]
@@ -78,6 +78,7 @@ namespace ARCVDS_Final.Models {
         public string numeroTelemovel { get; set; }
 
         [Required]
+        [DataType (DataType.Date)]
         [Display(Name ="Data de entrada para a associação")]
         public DateTime dataEntradaClube { get; set; }
 

@@ -9,6 +9,11 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+<div>
+
+    <input type="text" id="Search" placeholder="Search" class="form-control"/>
+</div>
+
 <table class="table">
     <tr>
         <th>
@@ -41,11 +46,14 @@
         <th>
             @Html.DisplayNameFor(model => model.numeroTelemovel)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dataEntradaClube)
+        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
+    <tr class="Search">
         <td>
             @Html.DisplayFor(modelItem => item.Nome)
         </td>
@@ -68,17 +76,16 @@
             @Html.DisplayFor(modelItem => item.Email)
         </td>
         <td>
-        @*Html.DisplayFor(modelItem => item.Foto)*@
-
-        <a href="~/imagens/@item.Foto" target="_blank">
-            <img src="~/imagens/@item.Foto" width="50" height="50" />
-        </a>
+            @Html.DisplayFor(modelItem => item.Foto)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.numeroTelefone)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.numeroTelemovel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dataEntradaClube)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Pessoa_ID }) |
@@ -89,3 +96,23 @@
 }
 
 </table>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    $(document).ready(function () {
+        function Contains(text_one, text_two) {
+            if(text_one.indexOf(text_two)!=-1) {
+                return true;
+            }
+        }
+        $("#Search").keyup(function () {
+            var searchText = $("#Search").val().toLowerCase();
+            if(!Contains($(this).text().toLowerCase,searchText)) {
+                $(this).hide();
+            }
+            else {
+                $(this).show();
+            }
+        })
+    })
+</script>

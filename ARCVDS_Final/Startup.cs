@@ -10,6 +10,7 @@ namespace IdentitySample {
             //iniciaRoles ();
         }
 
+        /*
         private void iniciaRoles () {
 
             ApplicationDbContext db = new ApplicationDbContext ();
@@ -64,9 +65,9 @@ namespace IdentitySample {
 
                 var user = new ApplicationUser ();
                 user.UserName = "plaka";
-                user.Email = "plaka@gmail.com";
+                user.Email = "diogomartinsvds@gmail.com";
 
-                string plakaPassword = "123";
+                string plakaPassword = "Qwer4545#";
                 var chkUser = userManager.Create (user,plakaPassword);
 
                 if(chkUser.Succeeded) {
@@ -74,8 +75,8 @@ namespace IdentitySample {
                 }
 
             }
+            */
 
-
-        }
+        
     }
 }
