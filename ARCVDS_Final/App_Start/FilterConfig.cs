@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace IdentitySample
+namespace ARCVDS_Final
 {
     public class FilterConfig
     {

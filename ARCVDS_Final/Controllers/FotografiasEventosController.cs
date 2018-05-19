@@ -12,7 +12,9 @@ namespace ARCVDS_Final.Controllers
 {
     public class FotografiasEventosController : Controller
     {
-        private SociosDB db = new SociosDB();
+        //private SociosDB db = new SociosDB();
+
+        private ApplicationDbContext db = new ApplicationDbContext ();
 
         // GET: FotografiasEventos
         public ActionResult Index()

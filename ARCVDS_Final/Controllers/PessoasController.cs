@@ -13,7 +13,9 @@ namespace ARCVDS_Final.Controllers
 {
     public class PessoasController : Controller
     {
-        private SociosDB db = new SociosDB();
+        //private SociosDB db = new SociosDB();
+
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Pessoas
         public ActionResult Index(string pesquisa)

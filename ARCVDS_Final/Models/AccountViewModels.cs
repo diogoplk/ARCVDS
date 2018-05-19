@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace IdentitySample.Models
+namespace ARCVDS_Final.Models
 {
     public class ExternalLoginConfirmationViewModel
     {

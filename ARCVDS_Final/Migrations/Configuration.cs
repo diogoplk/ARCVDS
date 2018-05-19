@@ -7,14 +7,14 @@ namespace ARCVDS_Final.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<ARCVDS_Final.Models.SociosDB>
+    internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(ARCVDS_Final.Models.SociosDB context)
+        protected override void Seed(ApplicationDbContext context)
         {
             var bene = new List<Beneficios> {
                new Beneficios { id_Beneficio=1, Categoria="Bar", Descricao="Descontos em bebidas de bar"},

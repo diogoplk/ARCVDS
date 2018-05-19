@@ -1,16 +1,16 @@
-﻿using IdentitySample.Models;
+﻿using ARCVDS_Final.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Owin;
 
-namespace IdentitySample {
+namespace ARCVDS_Final {
+
     public partial class Startup {
         public void Configuration (IAppBuilder app) {
             ConfigureAuth (app);
-            //iniciaRoles ();
+            iniciaRoles ();
         }
-
-        /*
+        
         private void iniciaRoles () {
 
             ApplicationDbContext db = new ApplicationDbContext ();
@@ -18,7 +18,7 @@ namespace IdentitySample {
             var roleManager = new RoleManager<IdentityRole> (new RoleStore<IdentityRole> (db));
             var userManager = new UserManager<ApplicationUser> (new UserStore<ApplicationUser> (db));
 
-            if(!roleManager.RoleExists ("Funcionarios")) {
+            /*if(!roleManager.RoleExists ("Funcionarios")) {
 
                 var roleFun = new IdentityRole ();
                 roleFun.Name = "Funcionarios";
@@ -73,10 +73,8 @@ namespace IdentitySample {
                 if(chkUser.Succeeded) {
                     var result1 = userManager.AddToRole (user.Id,"Admin");
                 }
-
+                */
             }
-            */
-
-        
+       
     }
 }

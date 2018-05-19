@@ -2,11 +2,11 @@
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
-using IdentitySample.Models;
+using ARCVDS_Final.Models;
 using Owin;
 using System;
 
-namespace IdentitySample
+namespace ARCVDS_Final
 {
     public partial class Startup
     {

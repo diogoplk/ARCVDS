@@ -12,7 +12,9 @@ namespace ARCVDS_Final.Controllers
 {
     public class QuotasController : Controller
     {
-        private SociosDB db = new SociosDB();
+        //private SociosDB db = new SociosDB();
+
+        private ApplicationDbContext db = new ApplicationDbContext ();
 
         // GET: Quotas
         public ActionResult Index()

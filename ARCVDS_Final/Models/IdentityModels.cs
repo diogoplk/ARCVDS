@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace IdentitySample.Models
+namespace ARCVDS_Final.Models
 {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
@@ -21,7 +22,7 @@ namespace IdentitySample.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("AppBD", throwIfV1Schema: false)
         {
         }
 
@@ -35,6 +36,24 @@ namespace IdentitySample.Models
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
+        }
+
+
+        public virtual DbSet<Beneficios> Beneficios { get; set; }
+        public virtual DbSet<Eventos> Eventos { get; set; }
+        //public virtual DbSet<Funcionarios> Funcionarios { get; set; }
+        public virtual DbSet<Pagamentos> Pagamentos { get; set; }
+        public virtual DbSet<Pessoas> Pessoas { get; set; }
+        public virtual DbSet<Quotas> Quotas { get; set; }
+        //public virtual DbSet<Socios> Socios { get; set; }
+        public virtual DbSet<FotografiasEventos> FotografiasEventos {get; set;}
+
+        protected override void OnModelCreating (DbModelBuilder modelBuilder) {
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention> ();
+            modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention> ();
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention> ();
+            base.OnModelCreating (modelBuilder);
+
         }
     }
 }
