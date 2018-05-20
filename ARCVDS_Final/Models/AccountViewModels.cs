@@ -61,7 +61,7 @@ namespace ARCVDS_Final.Models
 
     public class RegisterViewModel
     {
-        [Required]
+        //[Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
@@ -76,6 +76,9 @@ namespace ARCVDS_Final.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        public Pessoas pessoas { get; set; }
+
     }
 
     public class ResetPasswordViewModel

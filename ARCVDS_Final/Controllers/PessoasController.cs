@@ -7,22 +7,17 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ARCVDS_Final.Models;
-using System.IO;
 
 namespace ARCVDS_Final.Controllers
 {
     public class PessoasController : Controller
     {
-        //private SociosDB db = new SociosDB();
-
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Pessoas
-        public ActionResult Index(string pesquisa)
+        public ActionResult Index()
         {
-            //SociosDB db = new SociosDB();
-            
-            return View(db.Pessoas.Where(x=>x.Nome.StartsWith(pesquisa)|| pesquisa==null).ToList());
+            return View(db.Pessoas.ToList());
         }
 
         // GET: Pessoas/Details/5
@@ -51,41 +46,19 @@ namespace ARCVDS_Final.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Pessoa_ID,Nome,data_Nascimento,Sexo,Morada,Codigo_Postal,Nacionalidade,Email,Foto,numeroTelefone,numeroTelemovel,dataEntradaClube")]
-        HttpPostedFileBase UploadFoto,Pessoas pessoas)
+        public ActionResult Create([Bind(Include = "Pessoa_ID,Nome,data_Nascimento,Sexo,Morada,Codigo_Postal,Nacionalidade,Email,numeroTelefone,numeroTelemovel,dataEntradaClube,UserName")] Pessoas pessoas)
         {
-            int novoID = 0;
+            
 
-            if(db.Pessoas.Count () == 0) {
-                novoID = 1;
-            }
-            else {
 
-                novoID = db.Pessoas.Max (p => p.Pessoa_ID) + 1;
-            }
-            pessoas.Pessoa_ID = novoID;
-
-            string nomeFotografia = "Pessoas_" + novoID + ".jpg";
-
-            string caminhoParaFotografia = Path.Combine (Server.MapPath ("~/Imagens/"),nomeFotografia);
-
-            if(UploadFoto != null) {
-
-                pessoas.Foto = nomeFotografia;
-
-            }
-            else {
-                ModelState.AddModelError ("","Não foi fornecida uma imagem..."); // gera MSG de erro
-                return View (pessoas);
-            }
-            if(ModelState.IsValid) {
-                db.Pessoas.Add (pessoas);
-                db.SaveChanges ();
-                UploadFoto.SaveAs (caminhoParaFotografia);
-                return RedirectToAction ("Index");
+            if (ModelState.IsValid)
+            {
+                db.Pessoas.Add(pessoas);
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
 
-            return View (pessoas);
+            return View(pessoas);
         }
 
         // GET: Pessoas/Edit/5
@@ -108,7 +81,7 @@ namespace ARCVDS_Final.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Pessoa_ID,Nome,data_Nascimento,Sexo,Morada,Codigo_Postal,Nacionalidade,Email,Foto,numeroTelefone,numeroTelemovel,dataEntradaClube")] Pessoas pessoas)
+        public ActionResult Edit([Bind(Include = "Pessoa_ID,Nome,data_Nascimento,Sexo,Morada,Codigo_Postal,Nacionalidade,Email,numeroTelefone,numeroTelemovel,dataEntradaClube,UserName")] Pessoas pessoas)
         {
             if (ModelState.IsValid)
             {
@@ -140,16 +113,9 @@ namespace ARCVDS_Final.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Pessoas pessoas = db.Pessoas.Find(id);
-
-            try {
-                db.Pessoas.Remove (pessoas);
-                db.SaveChanges ();
-                return RedirectToAction ("Index");
-            }
-            catch(Exception) {
-                ModelState.AddModelError ("",String.Format ("nao foi possivel"));
-            }
-            return View (pessoas);
+            db.Pessoas.Remove(pessoas);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

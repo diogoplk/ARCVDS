@@ -63,7 +63,7 @@ namespace ARCVDS_Final.Models {
 
         //[Required]
         //[StringLength(30)]
-        public string Foto { get; set; }
+        //public string Foto { get; set; }
 
         [Required]
         [StringLength(13)]
@@ -81,6 +81,10 @@ namespace ARCVDS_Final.Models {
         [DataType (DataType.Date)]
         [Display(Name ="Data de entrada para a associação")]
         public DateTime dataEntradaClube { get; set; }
+
+
+        [Display(Name = "UserName")]
+        public string UserName { get; set; }
 
         /********1/N*****Quotas**********/
         /*******************************************************************/

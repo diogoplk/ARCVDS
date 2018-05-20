@@ -12,10 +12,15 @@ using System.Web.Mvc;
 
 namespace ARCVDS_Final.Controllers
 {
+   
     [Authorize]
     public class AccountController : Controller
     {
-        public AccountController()
+
+        public ApplicationDbContext db = new ApplicationDbContext ();
+
+
+        public AccountController ()
         {
         }
 
@@ -145,10 +150,17 @@ namespace ARCVDS_Final.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register([Bind(Include= "Pessoa_ID,Nome,data_Nascimento,Sexo,Morada,Codigo_Postal,Nacionalidade,Email,Foto,numeroTelefone,numeroTelemovel,dataEntradaClube,UserName")]Pessoas pessoas, RegisterViewModel model,HttpPostedFileBase UploadFoto)
         {
+            model.Email = pessoas.Email;
+            //pessoas.Email = pessoas.UserName;
+            //pessoas.dataEntradaClube = DateTime.Today;
+
             if (ModelState.IsValid)
             {
+                db.Pessoas.Add(pessoas);
+                db.SaveChanges();
+
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)

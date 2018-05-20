@@ -1,4 +1,6 @@
-﻿@model ARCVDS_Final.Models.RegisterViewModel
+﻿@using System.ComponentModel.DataAnnotations
+@using System.Web.UI.HtmlControls
+@model ARCVDS_Final.Models.RegisterViewModel
 @{
     ViewBag.Title = "Register";
 }
@@ -8,32 +10,101 @@
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
+    <h4>Queres ser sócio ? Da-lhe!</h4>
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
+
     <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.Email,new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            @Html.EditorFor(m => m.pessoas.Email,new { htmlAttributes = new { @class = "form-control",@maxlength = "50",@placeholder = "Email"} })
         </div>
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            @Html.PasswordFor(m=>m.Password,new { @class = "form-control",@placeholder = "Palavra-passe",@style = "width: 230px;" })
         </div>
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+            @Html.PasswordFor(m=>m.ConfirmPassword,new { @class = "form-control",@placeholder = "Palavra-passe",@style = "width: 230px;" })
         </div>
+    </div>
+
+// DIV para cenas pessoais
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.pessoas.Nome, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.pessoas.Nome, new { htmlAttributes = new { @class = "form-control",@maxlength = "50",@placeholder = "Nome" } })
+        </div>
+    </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(m => m.pessoas.data_Nascimento, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.pessoas.data_Nascimento, new { htmlAttributes = new { @class = "form-control",@placeholder = "Data Nascimento" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.pessoas.Sexo, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.pessoas.Sexo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Sexo",@maxlength="1" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.pessoas.Morada, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.pessoas.Morada, new { htmlAttributes = new { @class = "form-control", @placeholder = "Morada",@maxlength = "50" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.pessoas.Codigo_Postal, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.pessoas.Codigo_Postal, new { htmlAttributes = new { @class = "form-control", @placeholder = "Código Postal",@maxlength = "25" } })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.pessoas.Nacionalidade, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.pessoas.Nacionalidade, new { htmlAttributes = new { @class = "form-control", @placeholder = "Nacionalidade",@maxlength = "30" } })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.pessoas.numeroTelefone, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.pessoas.numeroTelefone, new { htmlAttributes = new { @class = "form-control", @placeholder = "Número Telefone",@maxlength = "13" } })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.pessoas.numeroTelemovel, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.pessoas.numeroTelemovel, new { htmlAttributes = new { @class = "form-control", @placeholder = "Número Telomovel",@maxlength = "13" } })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.pessoas.dataEntradaClube, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.pessoas.dataEntradaClube, new { htmlAttributes = new { @class = "form-control", @placeholder = "Data de Entrada"} })
+        </div>
+    </div>
+    
+    <div>
+        <input type="file" name="foto" id="foto" />
     </div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" class="btn btn-default" value="Register" />
         </div>
     </div>
+    <p class="col-md-12">
+        Já tens uma conta? @Html.ActionLink("Login", "Login", "Account");
+    </p>
 }
 
 @section Scripts {

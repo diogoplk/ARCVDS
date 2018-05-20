@@ -25,8 +25,12 @@ namespace ARCVDS_Final.Migrations
             context.SaveChanges ();
 
             var pess = new List<Pessoas> {
-               new Pessoas {Pessoa_ID=1, Nome="Diogo Martins", data_Nascimento=new DateTime(2017,1,1), Sexo="M", Morada="asdasdsa",Codigo_Postal="2350-265 Torres Novas" , Nacionalidade="Po", Email="diogomartinsvds@gmail.com", Foto="plaka.jpg", numeroTelefone="123456789", numeroTelemovel="916488198", dataEntradaClube = new DateTime(2017,1,1), ListaBeneficios = new List<Beneficios> { bene[0], bene[1] } },
-               new Pessoas {Pessoa_ID=2, Nome="Luis Martins", data_Nascimento=new DateTime(2017,1,1), Sexo="M", Morada="asdasdsa",Codigo_Postal="2350-265 Torres Novas" , Nacionalidade="Po", Email="luismartins@gmail.com", Foto="alex.jpg", numeroTelefone="123456789", numeroTelemovel="916488198", dataEntradaClube = new DateTime(2017,1,1), ListaBeneficios = new List<Beneficios> { bene[0], bene[1] } },
+               new Pessoas {Pessoa_ID=1, Nome="Diogo Martins", data_Nascimento=new DateTime(2017,1,1), Sexo="M", Morada="asdasdsa",Codigo_Postal="2350-265 Torres Novas" ,
+                   Nacionalidade ="Po", Email="diogomartinsvds@gmail.com", /*Foto="plaka.jpg"*/ numeroTelefone="123456789", numeroTelemovel="916488198",
+                   dataEntradaClube = new DateTime(2017,1,1), UserName ="diogomartinsvds@gmail.com" ,ListaBeneficios = new List<Beneficios> { bene[0], bene[1] } },
+               new Pessoas {Pessoa_ID=2, Nome="Luis Martins", data_Nascimento=new DateTime(2017,1,1), Sexo="M", Morada="asdasdsa",Codigo_Postal="2350-265 Torres Novas" , Nacionalidade="Po",
+                   Email ="luismartins@gmail.com", /*Foto="alex.jpg"*/ numeroTelefone="123456789", numeroTelemovel="916488198", dataEntradaClube = new DateTime(2017,1,1),
+                   UserName = "luismartins@gmail.com",ListaBeneficios = new List<Beneficios> { bene[0], bene[1] } },
             };
             pess.ForEach (pp => context.Pessoas.AddOrUpdate (p => p.Nome,pp));
             context.SaveChanges ();

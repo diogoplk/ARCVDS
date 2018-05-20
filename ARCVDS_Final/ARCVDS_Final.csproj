@@ -221,11 +221,11 @@
     <Compile Include="Models\Pagamentos.cs" />
     <Compile Include="Models\Pessoas.cs" />
     <Compile Include="Models\Quotas.cs" />
-    <Compile Include="Models\SociosDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BackGroundImage\fundo.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -321,16 +321,16 @@
     <Content Include="Views\Quotas\Details.cshtml" />
     <Content Include="Views\Quotas\Edit.cshtml" />
     <Content Include="Views\Quotas\Index.cshtml" />
-    <Content Include="Views\Pessoas\Create.cshtml" />
-    <Content Include="Views\Pessoas\Delete.cshtml" />
-    <Content Include="Views\Pessoas\Details.cshtml" />
-    <Content Include="Views\Pessoas\Edit.cshtml" />
-    <Content Include="Views\Pessoas\Index.cshtml" />
     <Content Include="Views\Eventos\Create.cshtml" />
     <Content Include="Views\Eventos\Delete.cshtml" />
     <Content Include="Views\Eventos\Details.cshtml" />
     <Content Include="Views\Eventos\Edit.cshtml" />
     <Content Include="Views\Eventos\Index.cshtml" />
+    <Content Include="Views\Pessoas\Create.cshtml" />
+    <Content Include="Views\Pessoas\Delete.cshtml" />
+    <Content Include="Views\Pessoas\Details.cshtml" />
+    <Content Include="Views\Pessoas\Edit.cshtml" />
+    <Content Include="Views\Pessoas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
