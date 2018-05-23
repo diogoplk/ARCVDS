@@ -15,9 +15,10 @@ namespace ARCVDS_Final.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Pessoas
-        public ActionResult Index()
+        public ActionResult Index(string pesquisa)
         {
-            return View(db.Pessoas.ToList());
+            //return View(db.Pessoas.ToList());
+            return View (db.Pessoas.Where (x => x.Nome.StartsWith (pesquisa) || pesquisa == null).ToList ());
         }
 
         // GET: Pessoas/Details/5

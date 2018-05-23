@@ -15,9 +15,9 @@ namespace ARCVDS_Final.Controllers
         //private SociosDB db = new SociosDB();
         private ApplicationDbContext db = new ApplicationDbContext ();
         // GET: Eventos
-        public ActionResult Index()
+        public ActionResult Index(string pesquisa2)
         {
-            return View(db.Eventos.ToList());
+            return View(db.Eventos.Where (x => x.nome_Evento.Contains(pesquisa2) || pesquisa2 == null).ToList ());
         }
 
         // GET: Eventos/Details/5

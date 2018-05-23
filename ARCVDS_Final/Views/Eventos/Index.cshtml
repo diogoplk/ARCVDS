@@ -6,8 +6,12 @@
 
 <h2>Index</h2>
 
+@using(Html.BeginForm ("Index","Eventos",FormMethod.Get)) {
+    @Html.TextBox("pesquisa2")<input type="submit" value="Search" class="form-control" />
+}
+
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create",FormMethod.Get);
 </p>
 <table class="table">
     <tr>
@@ -26,10 +30,18 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+    @if(Model.Count () == 0) {
+        <tr>
+            <td>Erro</td>
+        </tr>
+    }
+    else {
+
+        foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.nome_Evento)
+            @*Html.DisplayFor(modelItem => item.nome_Evento)*@
+            @item.nome_Evento
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Descricao)
@@ -46,6 +58,6 @@
             @Html.ActionLink("Delete", "Delete", new { id=item.id_Evento })
         </td>
     </tr>
+    }
 }
-
 </table>
