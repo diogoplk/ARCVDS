@@ -47,7 +47,7 @@ namespace ARCVDS_Final.Models
     {
         [Required]
         [Display(Name = "Email")]
-        [EmailAddress]
+        //[EmailAddress]
         public string Email { get; set; }
 
         [Required]

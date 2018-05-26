@@ -232,10 +232,22 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="ImagensBeneficios\b.jpg" />
+    <Content Include="ImagensBeneficios\g.jpg" />
+    <Content Include="ImagensBeneficios\t.png" />
     <Content Include="ImagensEventos\477114.jpg" />
+    <Content Include="ImagensEventos\Associacao.png" />
     <Content Include="ImagensEventos\Eventos_2.jpg" />
-    <Content Include="ImagensEventos\Serra.jpg" />
+    <Content Include="ImagensEventos\Festas1.jpg" />
+    <Content Include="ImagensEventos\Futsal1.jpg" />
+    <Content Include="ImagensEventos\p1.png" />
+    <Content Include="ImagensEventos\p2.png" />
+    <Content Include="ImagensEventos\p3.png" />
+    <Content Include="ImagensEventos\p4.png" />
+    <Content Include="ImagensEventos\Serra1.jpg" />
+    <Content Include="ImagensEventos\Sopas1.jpg" />
     <Content Include="Imagens\Bernardo.jpg" />
+    <Content Include="Imagens\fb.png" />
     <Content Include="Imagens\plaka.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -331,6 +343,8 @@
     <Content Include="Views\Pessoas\Details.cshtml" />
     <Content Include="Views\Pessoas\Edit.cshtml" />
     <Content Include="Views\Pessoas\Index.cshtml" />
+    <Content Include="Views\Home\Eventos.cshtml" />
+    <Content Include="Views\Home\Beneficios.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

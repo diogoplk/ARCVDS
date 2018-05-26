@@ -23,5 +23,18 @@ namespace ARCVDS_Final.Controllers
 
             return View();
         }
+
+        public ActionResult Eventos() {
+            ViewBag.Message = "Página de Eventos";
+
+            return View ();
+        }
+
+        public ActionResult Beneficios() {
+            ViewBag.Message = "Página dos Beneficios";
+
+            return View ();
+        }
+
     }
 }

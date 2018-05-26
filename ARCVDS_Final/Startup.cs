@@ -30,10 +30,10 @@ namespace ARCVDS_Final
                 roleManager.Create(roleFun);
 
                 var user = new ApplicationUser();
-                user.UserName = "Jorge";
+                user.UserName = "jorge@gmail.com";
                 user.Email = "jorge@gmail.com";
 
-                string jorgePassword = "123";
+                string jorgePassword = "Qwer4545#";
 
                 var chkUser = userManager.Create(user, jorgePassword);
 
@@ -55,7 +55,7 @@ namespace ARCVDS_Final
                 user.UserName = "Luis";
                 user.Email = "luis@gmail.com";
 
-                string luisPassword = "123";
+                string luisPassword = "Qwer4545#";
 
                 var chkUser = userManager.Create(user, luisPassword);
 
@@ -73,7 +73,7 @@ namespace ARCVDS_Final
                 roleManager.Create(roleAdmin);
 
                 var user = new ApplicationUser();
-                user.UserName = "plaka";
+                user.UserName = "diogomartinsvds@gmail.com";
                 user.Email = "diogomartinsvds@gmail.com";
 
                 string plakaPassword = "Qwer4545#";
