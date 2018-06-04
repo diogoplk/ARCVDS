@@ -4,17 +4,43 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<style>
+    #colunas{
+        color:black;
+        font-weight:bold;
+        font-size:15px;
+    }
+    #valores {
+        color:black;
+        font-weight:bold;
+        font-size:13px;
+    }
+    a {
+        color:black;
+    }
+    a:hover {
+        color:darkred ;
+    }
+    #criar {
+        font-size:16px;
+    }
+</style>
+
+<div style="text-align:center;">
+    @Html.TextBox("pesquisa","",new { @style="width=200px;"})
+    <br />
+    <input type="submit" value="Search" class="form-control btn btn-primary" style="width:230px;" />
+</div>
 
 @using(Html.BeginForm ("Index","Pessoas",FormMethod.Get)) {
-    @Html.TextBox("pesquisa")<input type="submit" value="Search" class="form-control" />
+
 }
 
-<p>
+<p id="criar">
     @Html.ActionLink("Create New", "Create",FormMethod.Get)
 </p>
 <table class="table">
-    <tr>
+    <tr id="colunas">
         <th>
             @Html.DisplayNameFor(model => model.Nome)
         </th>
@@ -60,7 +86,7 @@
     else { 
 
     foreach (var item in Model) {
-    <tr>
+    <tr id="valores">
         <td>
             @*Html.DisplayFor(modelItem => item.Nome)*@
             @item.Nome

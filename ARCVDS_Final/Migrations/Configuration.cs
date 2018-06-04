@@ -31,6 +31,9 @@ namespace ARCVDS_Final.Migrations
                new Pessoas {Pessoa_ID=2, Nome="Luis Martins", data_Nascimento=new DateTime(2017,1,1), Sexo="M", Morada="asdasdsa",Codigo_Postal="2350-265 Torres Novas" , Nacionalidade="Po",
                    Email ="luismartins@gmail.com", /*Foto="alex.jpg"*/ numeroTelefone="123456789", numeroTelemovel="916488198", dataEntradaClube = new DateTime(2017,1,1),
                    UserName = "luismartins@gmail.com",ListaBeneficios = new List<Beneficios> { bene[0], bene[1] } },
+               new Pessoas {Pessoa_ID=3, Nome="Ricardo Formiga", data_Nascimento=new DateTime(2017,1,1), Sexo="M", Morada="asdasdsa",Codigo_Postal="2350-265 Torres Novas" , Nacionalidade="Po",
+                   Email ="ricardo@gmail.com", /*Foto="alex.jpg"*/ numeroTelefone="123456789", numeroTelemovel="916488198", dataEntradaClube = new DateTime(2017,1,1),
+                   UserName = "ricardo@gmail.com",ListaBeneficios = new List<Beneficios> { bene[0], bene[1] } },
             };
             pess.ForEach (pp => context.Pessoas.AddOrUpdate (p => p.Nome,pp));
             context.SaveChanges ();
@@ -57,6 +60,8 @@ namespace ARCVDS_Final.Migrations
                new Quotas {id_Quota=1, ano_Quota= new DateTime(2017,1,1), Valor_Quota=12, Descricao="Pagou somente 6€", Paga=false, PessoaFK = 1},
                new Quotas {id_Quota=2, ano_Quota= new DateTime(2017,1,1), Valor_Quota=12, Descricao="Pagou somente 6€", Paga=false, PessoaFK = 2},
                new Quotas { id_Quota = 3,ano_Quota = new DateTime (2016,1,1),Valor_Quota = 12,Descricao = "Pagou somente 6€",Paga = false,PessoaFK = 1 },
+               new Quotas { id_Quota = 4,ano_Quota = new DateTime (2016,1,1),Valor_Quota = 12,Descricao = "Pagou somente 6€",Paga = false,PessoaFK = 3 },
+               new Quotas { id_Quota = 5,ano_Quota = new DateTime (2016,1,1),Valor_Quota = 12,Descricao = "Pagou somente 6€",Paga = false,PessoaFK = 3 },
          };
             quo.ForEach (aa => context.Quotas.AddOrUpdate (a => a.id_Quota,aa));
             context.SaveChanges ();

@@ -52,10 +52,10 @@ namespace ARCVDS_Final
                 roleManager.Create(roleSocio);
 
                 var user = new ApplicationUser();
-                user.UserName = "Luis";
-                user.Email = "luis@gmail.com";
+                user.UserName = "ricardo@gmail.com";
+                user.Email = "ricardo@gmail.com";
 
-                string luisPassword = "Qwer4545#";
+                string luisPassword = "Qwer4#";
 
                 var chkUser = userManager.Create(user, luisPassword);
 
