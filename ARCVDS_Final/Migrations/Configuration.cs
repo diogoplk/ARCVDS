@@ -59,9 +59,9 @@ namespace ARCVDS_Final.Migrations
             var quo = new List<Quotas> {
                new Quotas {id_Quota=1, ano_Quota= new DateTime(2017,1,1), Valor_Quota=12, Descricao="Pagou somente 6€", Paga=false, PessoaFK = 1},
                new Quotas {id_Quota=2, ano_Quota= new DateTime(2017,1,1), Valor_Quota=12, Descricao="Pagou somente 6€", Paga=false, PessoaFK = 2},
-               new Quotas { id_Quota = 3,ano_Quota = new DateTime (2016,1,1),Valor_Quota = 12,Descricao = "Pagou somente 6€",Paga = false,PessoaFK = 1 },
-               new Quotas { id_Quota = 4,ano_Quota = new DateTime (2016,1,1),Valor_Quota = 12,Descricao = "Pagou somente 6€",Paga = false,PessoaFK = 3 },
-               new Quotas { id_Quota = 5,ano_Quota = new DateTime (2016,1,1),Valor_Quota = 12,Descricao = "Pagou somente 6€",Paga = false,PessoaFK = 3 },
+               new Quotas {id_Quota = 3,ano_Quota = new DateTime (2016,1,1),Valor_Quota = 12,Descricao = "Pagou somente 6€",Paga = false,Email="ricardo@gmail.com",PessoaFK = 3 },
+               new Quotas {id_Quota = 4,ano_Quota = new DateTime (2017,1,1),Valor_Quota = 12,Descricao = "Pagou somente 6€",Paga = false,Email="ricardo@gmail.com",PessoaFK = 3 },
+               new Quotas {id_Quota = 5,ano_Quota = new DateTime (2018,1,1),Valor_Quota = 12,Descricao = "Pagou somente 6€",Paga = false,Email="ricardo@gmail.com",PessoaFK = 3 },
          };
             quo.ForEach (aa => context.Quotas.AddOrUpdate (a => a.id_Quota,aa));
             context.SaveChanges ();
@@ -69,8 +69,9 @@ namespace ARCVDS_Final.Migrations
             var pag = new List<Pagamentos> {
                new Pagamentos {id_Pagamento=1, Valor_Pagamento=12, data_Pagamento=new DateTime(2017,1,1), ultima_Ano_Pago=new DateTime(2016,1,1), QuotaFK=1},
                new Pagamentos {id_Pagamento=2, Valor_Pagamento=12, data_Pagamento=new DateTime(2017,1,1), ultima_Ano_Pago=new DateTime(2016,1,1), QuotaFK=2},
-               new Pagamentos {id_Pagamento=3, Valor_Pagamento=12, data_Pagamento=new DateTime(2017,1,1), ultima_Ano_Pago=new DateTime(2016,1,1), QuotaFK=3},
-
+               new Pagamentos {id_Pagamento=3, Valor_Pagamento=12, data_Pagamento=new DateTime(2017,1,1), ultima_Ano_Pago=new DateTime(2016,1,1),Email="ricardo@gmail.com", QuotaFK=3},
+               new Pagamentos {id_Pagamento=4, Valor_Pagamento=12, data_Pagamento=new DateTime(2017,1,1), ultima_Ano_Pago=new DateTime(2016,1,1),Email="ricardo@gmail.com",QuotaFK=4},
+               new Pagamentos {id_Pagamento=5, Valor_Pagamento=12, data_Pagamento=new DateTime(2017,1,1), ultima_Ano_Pago=new DateTime(2016,1,1),Email="ricardo@gmail.com",QuotaFK=5},
             };
             pag.ForEach (aa => context.Pagamentos.AddOrUpdate (a => a.id_Pagamento,aa));
             context.SaveChanges ();

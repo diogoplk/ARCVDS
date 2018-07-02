@@ -22,7 +22,20 @@ namespace ARCVDS_Final.Controllers
             var quotas = db.Quotas.Include(q => q.Pessoa);
             return View(quotas.ToList());
         }
+        // GET: Quotas
+        public ActionResult QuotasUser() {
 
+            if (User.IsInRole("Admin")) {
+
+                var quotas2 = db.Quotas.Include (q => q.Pessoa);
+                return View (quotas2.ToList ());
+
+            }
+
+            var batatas = novaFuncao();
+            var quotas = db.Quotas.Where(x => x.PessoaFK == batatas);
+            return View (quotas.ToList ());
+        }
         // GET: Quotas/Details/5
         public ActionResult Details(int? id)
         {
@@ -130,5 +143,21 @@ namespace ARCVDS_Final.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public int novaFuncao()
+        {
+            var listaUser = db.Pessoas.Where(x => x.Email.Equals(User.Identity.Name));
+
+            var aux = 0;
+
+            foreach (var item in listaUser)
+            {
+                aux = item.Pessoa_ID;
+
+            }
+
+            return aux;
+        }
+
     }
 }

@@ -22,7 +22,24 @@ namespace ARCVDS_Final.Controllers
             var pagamentos = db.Pagamentos.Include(p => p.Quota);
             return View(pagamentos.ToList());
         }
+        
+        public ActionResult PagamentosUser() {
 
+            if(User.IsInRole ("Admin")) {
+
+                //var pagamentos = db.Pagamentos.Include (q => q.Quota).Include(p=>p.);
+                var pagamentos = db.Pagamentos.Include (p => p.Quota);
+                return View (pagamentos.ToList ());
+            }
+
+            //var batatas = getUser ();
+            var creme = novaFuncao ();
+            var pagamentos1 = db.Pagamentos.Where (x => x.QuotaFK == creme);
+            //var pagamentos2 = db.Pessoas.Where (pixa => pixa.Pessoa_ID == batatas);
+
+            return View (pagamentos1.ToList ());
+        }
+        
         // GET: Pagamentos/Details/5
         public ActionResult Details(int? id)
         {
@@ -130,5 +147,27 @@ namespace ARCVDS_Final.Controllers
             }
             base.Dispose(disposing);
         }
+        
+        public int novaFuncao() {
+
+            var ListaQuotas = db.Quotas.Where (x => x.Email.Equals (User.Identity.Name));
+            var aux = 0;
+
+            foreach(var item in ListaQuotas) {
+                aux = item.id_Quota;
+            }
+            return aux;
+        }
+        /*
+        public int getUser() {
+            var ListUser = db.Pessoas.Where (x => x.Email.Equals (User.Identity.Name));
+            var aux = 0;
+
+            foreach(var item in ListUser) {
+                aux = item.Pessoa_ID;
+            }
+            return aux;
+        }
+        */
     }
 }

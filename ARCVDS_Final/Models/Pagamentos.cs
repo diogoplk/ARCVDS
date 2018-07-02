@@ -27,6 +27,8 @@ namespace ARCVDS_Final.Models {
         [Required]
         [DataType(DataType.Date)]
         public DateTime ultima_Ano_Pago { get; set; }
+
+        public string Email { get; set; }
         
         [ForeignKey("Quota")]
         public int QuotaFK { get; set; }

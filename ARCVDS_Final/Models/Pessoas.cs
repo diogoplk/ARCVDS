@@ -63,7 +63,7 @@ namespace ARCVDS_Final.Models {
 
         //[Required]
         //[StringLength(30)]
-        //public string Foto { get; set; }
+        public string Foto { get; set; }
 
         [Required]
         [StringLength(13)]

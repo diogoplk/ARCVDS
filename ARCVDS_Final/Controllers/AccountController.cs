@@ -150,9 +150,10 @@ namespace ARCVDS_Final.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register([Bind(Include= "Pessoa_ID,Nome,data_Nascimento,Sexo,Morada,Codigo_Postal,Nacionalidade,Email,Foto,numeroTelefone,numeroTelemovel,dataEntradaClube,UserName")]Pessoas pessoas, RegisterViewModel model,HttpPostedFileBase UploadFoto)
+        public async Task<ActionResult> Register([Bind(Include= "Pessoa_ID,Nome,data_Nascimento,Sexo,Morada,Codigo_Postal,Nacionalidade,Email,Foto,numeroTelefone,numeroTelemovel,dataEntradaClube,UserName")]Pessoas pessoas,Pagamentos p,Quotas q,RegisterViewModel model,HttpPostedFileBase UploadFoto)
         {
             model.Email = pessoas.Email;
+
             //pessoas.Email = pessoas.UserName;
             //pessoas.dataEntradaClube = DateTime.Today;
 

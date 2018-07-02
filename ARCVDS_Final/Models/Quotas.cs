@@ -53,6 +53,8 @@ namespace ARCVDS_Final.Models {
             get;set;
         }
 
+        public string Email { get; set; }
+
         [Required]
         [Display(Description = ("Quota paga ou não paga"))]
         public Boolean Paga {
