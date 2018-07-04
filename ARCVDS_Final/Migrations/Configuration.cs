@@ -59,9 +59,9 @@ namespace ARCVDS_Final.Migrations
             var quo = new List<Quotas> {
                new Quotas {id_Quota=1, ano_Quota= new DateTime(2017,1,1), Valor_Quota=12, Descricao="Pagou somente 6€", Paga=false, PessoaFK = 1},
                new Quotas {id_Quota=2, ano_Quota= new DateTime(2017,1,1), Valor_Quota=12, Descricao="Pagou somente 6€", Paga=false, PessoaFK = 2},
-               new Quotas {id_Quota = 3,ano_Quota = new DateTime (2016,1,1),Valor_Quota = 12,Descricao = "Pagou somente 6€",Paga = false,Email="ricardo@gmail.com",PessoaFK = 3 },
-               new Quotas {id_Quota = 4,ano_Quota = new DateTime (2017,1,1),Valor_Quota = 12,Descricao = "Pagou somente 6€",Paga = false,Email="ricardo@gmail.com",PessoaFK = 3 },
-               new Quotas {id_Quota = 5,ano_Quota = new DateTime (2018,1,1),Valor_Quota = 12,Descricao = "Pagou somente 6€",Paga = false,Email="ricardo@gmail.com",PessoaFK = 3 },
+               new Quotas {id_Quota=3,ano_Quota = new DateTime (2016,1,1),Valor_Quota = 12,Descricao = "Pagou somente 6€",Paga = false,Email="ricardo@gmail.com",PessoaFK = 3 },
+               new Quotas {id_Quota=4,ano_Quota = new DateTime (2017,1,1),Valor_Quota = 12,Descricao = "Pagou somente 6€",Paga = false,Email="ricardo@gmail.com",PessoaFK = 3 },
+               new Quotas {id_Quota=5,ano_Quota = new DateTime (2018,1,1),Valor_Quota = 12,Descricao = "Pagou somente 6€",Paga = false,Email="ricardo@gmail.com",PessoaFK = 3 },
          };
             quo.ForEach (aa => context.Quotas.AddOrUpdate (a => a.id_Quota,aa));
             context.SaveChanges ();
