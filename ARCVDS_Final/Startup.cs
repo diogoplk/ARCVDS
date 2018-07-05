@@ -65,11 +65,11 @@ namespace ARCVDS_Final
                 }
             }
 
-            if (!roleManager.RoleExists("Admin"))
+            if (!roleManager.RoleExists("Administrador"))
             {
 
                 var roleAdmin = new IdentityRole();
-                roleAdmin.Name = "Admin";
+                roleAdmin.Name = "Administrador";
                 roleManager.Create(roleAdmin);
 
                 var user = new ApplicationUser();
@@ -81,7 +81,7 @@ namespace ARCVDS_Final
 
                 if (chkUser.Succeeded)
                 {
-                    var result1 = userManager.AddToRole(user.Id, "Admin");
+                    var result1 = userManager.AddToRole(user.Id, "Administrador");
                 }
 
             }

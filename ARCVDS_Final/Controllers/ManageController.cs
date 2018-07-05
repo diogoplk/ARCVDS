@@ -9,7 +9,6 @@ using System.Web.Mvc;
 
 namespace ARCVDS_Final.Controllers
 {
-    [Authorize]
     public class ManageController : Controller
     {
         public ManageController()

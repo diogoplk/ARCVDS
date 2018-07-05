@@ -10,6 +10,7 @@ using ARCVDS_Final.Models;
 
 namespace ARCVDS_Final.Controllers
 {
+    [Authorize(Roles = "Admin, Funcionarios,Socios")]
     public class PessoasController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -37,6 +38,7 @@ namespace ARCVDS_Final.Controllers
         }
 
         // GET: Pessoas/Create
+        [Authorize (Roles = "Admin, Funcionarios")]
         public ActionResult Create()
         {
             return View();
@@ -68,12 +70,21 @@ namespace ARCVDS_Final.Controllers
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                //return RedirectToAction ("Edit");
             }
             Pessoas pessoas = db.Pessoas.Find(id);
+
             if (pessoas == null)
             {
-                return HttpNotFound();
+                //return HttpNotFound();
+                return RedirectToAction ("Index");
             }
+
+            if(!pessoas.Email.Equals(User.Identity.Name)) {
+
+            }
+
+
             return View(pessoas);
         }
 

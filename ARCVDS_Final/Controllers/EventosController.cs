@@ -8,8 +8,9 @@ using System.Web;
 using System.Web.Mvc;
 using ARCVDS_Final.Models;
 
-namespace ARCVDS_Final.Controllers
-{
+namespace ARCVDS_Final.Controllers { 
+
+    
     public class EventosController : Controller
     {
         //private SociosDB db = new SociosDB();

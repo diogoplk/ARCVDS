@@ -10,6 +10,8 @@ using ARCVDS_Final.Models;
 
 namespace ARCVDS_Final.Controllers
 {
+
+    [Authorize (Roles = "Admin, Funcionarios,Socios")]
     public class PagamentosController : Controller
     {
         //private SociosDB db = new SociosDB();

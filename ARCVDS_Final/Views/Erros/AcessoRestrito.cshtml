@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="utf-8" />
+    <title>Página de Acesso Restrito!</title>
+</head>
+<style>
+    #imageProibido {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        opacity: 0.5;
+    }
+    .restrito {
+        min-height: 100%; /* Fallback for browsers do NOT support vh unit */
+        min-height: 100vh; /* These two lines are counted as one :-)       */
+        display: flex;
+        align-items: center;
+    }
+</style>
+<body>
+    <div class="jumbotron restrito">
+        <h1 style="text-align:center;">Página Restrita! Queres ir preso ? </h1>
+        <!-- ref: https://rutgersonline.desk.com/customer/en/portal/articles/2635151-canvas-course-roles-and-permissions -->
+        <img id="imageProibido" src="~/Imagens/Probido.png" />
+    </div>
+</body>
+</html>

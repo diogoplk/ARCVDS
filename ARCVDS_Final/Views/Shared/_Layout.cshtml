@@ -21,50 +21,45 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Contactos", "Contact", "Home")</li>
                     <li>@Html.ActionLink("Eventos", "Eventos", "Home")</li>
                     <li>@Html.ActionLink("Beneficios", "Beneficios", "Home")</li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle btnBarra" data-toggle="dropdown">Trabalha!<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="~/Pessoas/Index">Pessoas</a></li>
-                            <li><a href="~/Quotas/QuotasUser">Quotas</a></li>
-                            <li><a href="~/Pagamentos/Index">Pagamentos</a></li>
-                            <li><a href="~/Pagamentos/PagamentosUser">PagamentosUser</a></li>
-                            <li><a href="~/Categorias/Index">Categorias</a></li>
-                            <li><a href="~/Beneficios/Index">Benefícios</a></li>
-                            <li><a href="~/UsersAdmin/Index">Utilizadores</a></li>
-                            <li><a href="~/RolesAdmin/Index">Funções</a></li>
 
+                    @*if(Request.IsAuthenticated && User.IsInRole ("Administrador") || User.IsInRole("Funcionarios")) {*@
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle btnBarra" data-toggle="dropdown">GestaoBD!<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="~/Quotas/QuotasUser">Quotas</a></li>
+                                    <li><a href="~/Pagamentos/PagamentosUser">PagamentosUser</a></li>
+                                    <li><a href="~/Pessoas/Index">Pessoas</a></li>
+                                    <li><a href="~/Pagamentos/Index">Pagamentos</a></li>
+                                    <li><a href="~/Beneficios/Index">Benefícios</a></li>
+                                    <li><a href="~/UsersAdmin/Index">Utilizadores</a></li>
+                                    <li><a href="~/RolesAdmin/Index">Funções</a></li>
+                                </ul>
+                            </li>
+                            
                         </ul>
-                    </li>
-                    @if(Request.IsAuthenticated && User.IsInRole ("Admin")) {
-                        <li>@Html.ActionLink("RolesAdmin", "Index", "RolesAdmin")</li>
-                        <li>@Html.ActionLink("UsersAdmin", "Index", "UsersAdmin")</li>
-                    }
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
-        </div>
-    </div>
-    @RenderBody()
-    <div class="footer-2">
-        <div class="container">
-            <div class="row">
-                <div class="col-8 col-sm-6 col-md-6">
-                    <p class="text-left" style="margin-top: 5%; margin-bottom: 3%;">© 2018 Diogo Martins - Trabalho de TI2</p>
-                </div>
-                <div class="col-12 col-sm-6 col-md-6">
-                    <p class="text-right" style="margin-top: 5%; margin-bottom: 8%%; font-size: 1em;">Alguém lé isto?</p>
+                        @Html.Partial("_LoginPartial")
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
+            @RenderBody()
+            <div class="footer-2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-8 col-sm-6 col-md-6">
+                            <p class="text-left" style="margin-top: 5%; margin-bottom: 3%;">© 2018 Diogo Martins - Trabalho de TI2</p>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-6">
+                            <p class="text-right" style="margin-top: 5%; margin-bottom: 8%%; font-size: 1em;">Alguém lé isto?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
-</body>
-</html>
+            @Scripts.Render("~/bundles/jquery")
+            @Scripts.Render("~/bundles/bootstrap")
+            @RenderSection("scripts", required: false)
+        </body>
+        </html>

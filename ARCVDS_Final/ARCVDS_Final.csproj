@@ -198,8 +198,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BeneficiosController.cs" />
+    <Compile Include="Controllers\ErrosController.cs" />
     <Compile Include="Controllers\EventosController.cs" />
-    <Compile Include="Controllers\FotografiasEventosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PagamentosController.cs" />
@@ -246,9 +246,12 @@
     <Content Include="ImagensEventos\p4.png" />
     <Content Include="ImagensEventos\Serra1.jpg" />
     <Content Include="ImagensEventos\Sopas1.jpg" />
+    <Content Include="Imagens\404.jpg" />
     <Content Include="Imagens\Bernardo.jpg" />
     <Content Include="Imagens\fb.png" />
+    <Content Include="Imagens\Indisponivel.png" />
     <Content Include="Imagens\plaka.jpg" />
+    <Content Include="Imagens\Probido.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -347,9 +350,13 @@
     <Content Include="Views\Home\Beneficios.cshtml" />
     <Content Include="Views\Quotas\QuotasUser.cshtml" />
     <Content Include="Views\Pagamentos\PagamentosUser.cshtml" />
+    <Content Include="Views\Erros\Erro404.cshtml" />
+    <Content Include="Views\Erros\AcessoRestrito.cshtml" />
+    <Content Include="Views\Erros\Indisponivel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\sada\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

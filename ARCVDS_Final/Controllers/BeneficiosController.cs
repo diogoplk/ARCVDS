@@ -10,6 +10,7 @@ using ARCVDS_Final.Models;
 
 namespace ARCVDS_Final.Controllers
 {
+
     public class BeneficiosController : Controller
     {
         //private SociosDB db = new SociosDB();
@@ -17,9 +18,19 @@ namespace ARCVDS_Final.Controllers
         private ApplicationDbContext db = new ApplicationDbContext ();
 
         // GET: Beneficios
+        //[Authorize (Roles = "Administrador")]
         public ActionResult Index()
         {
-            return View(db.Beneficios.ToList());
+            if(!User.Identity.IsAuthenticated) {
+               return RedirectToAction ("Index","Home");
+                if(User.IsInRole ("Admnistrador")) {
+                    return View (db.Beneficios.ToList ());
+                }
+            }
+            else {
+                return View (db.Beneficios.ToList ());
+            }
+           
         }
 
         // GET: Beneficios/Details/5
@@ -27,12 +38,12 @@ namespace ARCVDS_Final.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction ("Index");
             }
             Beneficios beneficios = db.Beneficios.Find(id);
             if (beneficios == null)
             {
-                return HttpNotFound();
+                return RedirectToAction ("Index");
             }
             return View(beneficios);
         }
@@ -65,12 +76,12 @@ namespace ARCVDS_Final.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction ("Index");
             }
             Beneficios beneficios = db.Beneficios.Find(id);
             if (beneficios == null)
             {
-                return HttpNotFound();
+                return RedirectToAction ("Index");
             }
             return View(beneficios);
         }
@@ -96,12 +107,12 @@ namespace ARCVDS_Final.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction ("Index");
             }
             Beneficios beneficios = db.Beneficios.Find(id);
             if (beneficios == null)
             {
-                return HttpNotFound();
+                return RedirectToAction ("Index");
             }
             return View(beneficios);
         }
