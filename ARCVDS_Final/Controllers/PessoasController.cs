@@ -10,7 +10,6 @@ using ARCVDS_Final.Models;
 
 namespace ARCVDS_Final.Controllers
 {
-    [Authorize(Roles = "Admin, Funcionarios,Socios")]
     public class PessoasController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -19,7 +18,16 @@ namespace ARCVDS_Final.Controllers
         public ActionResult Index(string pesquisa)
         {
             //return View(db.Pessoas.ToList());
-            return View (db.Pessoas.Where (x => x.Nome.StartsWith (pesquisa) || pesquisa == null).ToList ());
+
+            if(!User.Identity.IsAuthenticated) {
+                return RedirectToAction ("AcessoRestrito", "Erros");
+                if(User.IsInRole ("Admnistrador")) {
+                    return View(db.Pessoas.Where (x => x.Nome.StartsWith (pesquisa) || pesquisa == null).ToList ());
+                }
+            }
+            else {
+                return View (db.Pessoas.Where (x => x.Nome.StartsWith (pesquisa) || pesquisa == null).ToList ());
+            }
         }
 
         // GET: Pessoas/Details/5
@@ -27,21 +35,37 @@ namespace ARCVDS_Final.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction ("Index");
             }
             Pessoas pessoas = db.Pessoas.Find(id);
             if (pessoas == null)
             {
-                return HttpNotFound();
+                return RedirectToAction ("Index");
             }
-            return View(pessoas);
+            if(!User.Identity.IsAuthenticated) {
+                return RedirectToAction ("AcessoRestrito", "Erros");
+                if(User.IsInRole ("Admnistrador")) {
+                    return View (pessoas);
+                }
+            }
+            else {
+                return View (pessoas);
+            }
         }
 
         // GET: Pessoas/Create
-        [Authorize (Roles = "Admin, Funcionarios")]
         public ActionResult Create()
         {
-            return View();
+            if(!User.Identity.IsAuthenticated) {
+                return RedirectToAction ("AcessoRestrito", "Erros");
+                if(User.IsInRole ("Admnistrador")) {
+                    return View (db.Pagamentos.ToList ());
+                }
+            }
+            else {
+                //return View (db.Beneficios.ToList ());
+                return View ();
+            }
         }
 
         // POST: Pessoas/Create
@@ -51,9 +75,6 @@ namespace ARCVDS_Final.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Pessoa_ID,Nome,data_Nascimento,Sexo,Morada,Codigo_Postal,Nacionalidade,Email,numeroTelefone,numeroTelemovel,dataEntradaClube,UserName")] Pessoas pessoas)
         {
-            
-
-
             if (ModelState.IsValid)
             {
                 db.Pessoas.Add(pessoas);
@@ -69,23 +90,23 @@ namespace ARCVDS_Final.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                //return RedirectToAction ("Edit");
+                return RedirectToAction ("Edit");
             }
             Pessoas pessoas = db.Pessoas.Find(id);
 
             if (pessoas == null)
             {
-                //return HttpNotFound();
                 return RedirectToAction ("Index");
             }
-
-            if(!pessoas.Email.Equals(User.Identity.Name)) {
-
+            if(!User.Identity.IsAuthenticated) {
+                return RedirectToAction ("AcessoRestrito", "Erros");
+                if(User.IsInRole ("Admnistrador")) {
+                    return View (pessoas);
+                }
             }
-
-
-            return View(pessoas);
+            else {
+                return View (pessoas);
+            }
         }
 
         // POST: Pessoas/Edit/5
@@ -109,14 +130,22 @@ namespace ARCVDS_Final.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction ("Index");
             }
             Pessoas pessoas = db.Pessoas.Find(id);
             if (pessoas == null)
             {
-                return HttpNotFound();
+                return RedirectToAction ("Index");
             }
-            return View(pessoas);
+            if(!User.Identity.IsAuthenticated) {
+                return RedirectToAction ("AcessoRestrito", "Erros");
+                if(User.IsInRole ("Admnistrador")) {
+                    return View (pessoas);
+                }
+            }
+            else {
+                return View (pessoas);
+            }
         }
 
         // POST: Pessoas/Delete/5

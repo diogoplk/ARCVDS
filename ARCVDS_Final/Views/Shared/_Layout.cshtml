@@ -24,21 +24,20 @@
                     <li>@Html.ActionLink("Contactos", "Contact", "Home")</li>
                     <li>@Html.ActionLink("Eventos", "Eventos", "Home")</li>
                     <li>@Html.ActionLink("Beneficios", "Beneficios", "Home")</li>
-
-                    @*if(Request.IsAuthenticated && User.IsInRole ("Administrador") || User.IsInRole("Funcionarios")) {*@
-                            <li class="dropdown">
+                            @if(User.IsInRole("Admin")) {
+                                <li class="dropdown">
                                 <a href="#" class="dropdown-toggle btnBarra" data-toggle="dropdown">GestaoBD!<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="~/Quotas/QuotasUser">Quotas</a></li>
-                                    <li><a href="~/Pagamentos/PagamentosUser">PagamentosUser</a></li>
-                                    <li><a href="~/Pessoas/Index">Pessoas</a></li>
-                                    <li><a href="~/Pagamentos/Index">Pagamentos</a></li>
-                                    <li><a href="~/Beneficios/Index">Benefícios</a></li>
-                                    <li><a href="~/UsersAdmin/Index">Utilizadores</a></li>
-                                    <li><a href="~/RolesAdmin/Index">Funções</a></li>
+                                        <li><a href="~/Quotas/QuotasUser">Quotas</a></li>
+                                        <li><a href="~/Pagamentos/PagamentosUser">PagamentosUser</a></li>
+                                        <li><a href="~/Pessoas/Index">Pessoas</a></li>
+                                        <li><a href="~/Pagamentos/Index">Pagamentos</a></li>
+                                        <li><a href="~/Beneficios/Index">Benefícios</a></li>
+                                        <li><a href="~/UsersAdmin/Index">Utilizadores</a></li>
+                                        <li><a href="~/RolesAdmin/Index">Funções</a></li>
                                 </ul>
                             </li>
-                            
+                            }
                         </ul>
                         @Html.Partial("_LoginPartial")
                     </div>

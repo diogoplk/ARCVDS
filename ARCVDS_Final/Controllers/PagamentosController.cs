@@ -10,8 +10,6 @@ using ARCVDS_Final.Models;
 
 namespace ARCVDS_Final.Controllers
 {
-
-    [Authorize (Roles = "Admin, Funcionarios,Socios")]
     public class PagamentosController : Controller
     {
         //private SociosDB db = new SociosDB();
@@ -21,12 +19,23 @@ namespace ARCVDS_Final.Controllers
         // GET: Pagamentos
         public ActionResult Index()
         {
-            var pagamentos = db.Pagamentos.Include(p => p.Quota);
-            return View(pagamentos.ToList());
+            var pagamentos = db.Pagamentos.Include (p => p.Quota);
+
+            if(!User.Identity.IsAuthenticated) {
+                return RedirectToAction ("AcessoRestrito", "Erros");
+                if(User.IsInRole ("Admin")) {
+                    return View (db.Pagamentos.ToList ());
+                }
+            }
+            else {
+                return View (db.Pagamentos.ToList ());
+            }
         }
         
         public ActionResult PagamentosUser() {
-
+            if(!User.Identity.IsAuthenticated) {
+                return RedirectToAction ("AcessoRestrito", "Erros");
+            }
             if(User.IsInRole ("Admin")) {
 
                 var pagamentos = db.Pagamentos.Include (p => p.Quota);
@@ -44,21 +53,38 @@ namespace ARCVDS_Final.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction ("Index");
             }
             Pagamentos pagamentos = db.Pagamentos.Find(id);
             if (pagamentos == null)
             {
-                return HttpNotFound();
+                return RedirectToAction ("Index");
             }
-            return View(pagamentos);
+            if(!User.Identity.IsAuthenticated) {
+                return RedirectToAction ("AcessoRestrito", "Erros");
+                if(User.IsInRole ("Admin")) {
+                    return View (pagamentos);
+                }
+            }
+            else {
+                return View (pagamentos);
+            }
         }
 
         // GET: Pagamentos/Create
         public ActionResult Create()
         {
             ViewBag.QuotaFK = new SelectList(db.Quotas, "id_Quota", "Descricao");
-            return View();
+            if(!User.Identity.IsAuthenticated) {
+                return RedirectToAction ("AcessoRestrito", "Erros");
+                if(User.IsInRole ("Admin")) {
+                    return View (db.Pagamentos.ToList ());
+                }
+            }
+            else {
+                //return View (db.Beneficios.ToList ());
+                return View ();
+            }
         }
 
         // POST: Pagamentos/Create
@@ -84,15 +110,24 @@ namespace ARCVDS_Final.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction ("Index");
             }
             Pagamentos pagamentos = db.Pagamentos.Find(id);
             if (pagamentos == null)
             {
-                return HttpNotFound();
+                return RedirectToAction ("Index");
             }
             ViewBag.QuotaFK = new SelectList(db.Quotas, "id_Quota", "Descricao", pagamentos.QuotaFK);
-            return View(pagamentos);
+            if(!User.Identity.IsAuthenticated) {
+                return RedirectToAction ("AcessoRestrito", "Erros");
+                if(User.IsInRole ("Admin")) {
+                    return View (pagamentos);
+                }
+            }
+            else {
+                return View (pagamentos);
+            }
+
         }
 
         // POST: Pagamentos/Edit/5
@@ -117,14 +152,22 @@ namespace ARCVDS_Final.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction ("Index");
             }
             Pagamentos pagamentos = db.Pagamentos.Find(id);
             if (pagamentos == null)
             {
-                return HttpNotFound();
+                return RedirectToAction ("Index");
             }
-            return View(pagamentos);
+            if(!User.Identity.IsAuthenticated) {
+                return RedirectToAction ("AcessoRestrito", "Erros");
+                if(User.IsInRole ("Admin")) {
+                    return View (pagamentos);
+                }
+            }
+            else {
+                return View (pagamentos);
+            }
         }
 
         // POST: Pagamentos/Delete/5

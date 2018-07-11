@@ -65,23 +65,22 @@ namespace ARCVDS_Final
                 }
             }
 
-            if (!roleManager.RoleExists("Administrador"))
-            {
 
-                var roleAdmin = new IdentityRole();
-                roleAdmin.Name = "Administrador";
-                roleManager.Create(roleAdmin);
+            if(!roleManager.RoleExists ("Admin")) {
 
-                var user = new ApplicationUser();
+                var roleAdmin = new IdentityRole ();
+                roleAdmin.Name = "Admin";
+                roleManager.Create (roleAdmin);
+
+                var user = new ApplicationUser ();
                 user.UserName = "diogomartinsvds@gmail.com";
                 user.Email = "diogomartinsvds@gmail.com";
 
                 string plakaPassword = "Qwer4545#";
-                var chkUser = userManager.Create(user, plakaPassword);
+                var chkUser = userManager.Create (user, plakaPassword);
 
-                if (chkUser.Succeeded)
-                {
-                    var result1 = userManager.AddToRole(user.Id, "Administrador");
+                if(chkUser.Succeeded) {
+                    var result1 = userManager.AddToRole (user.Id, "Admin");
                 }
 
             }

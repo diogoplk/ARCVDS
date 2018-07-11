@@ -18,7 +18,15 @@ namespace ARCVDS_Final.Controllers {
         // GET: Eventos
         public ActionResult Index(string pesquisa2)
         {
-            return View(db.Eventos.Where (x => x.nome_Evento.Contains(pesquisa2) || pesquisa2 == null).ToList ());
+            if(!User.Identity.IsAuthenticated) {
+                return RedirectToAction ("AcessoRestrito", "Erros");
+                if(User.IsInRole ("Admnistrador")) { 
+                    return View (db.Eventos.Where (x => x.nome_Evento.Contains (pesquisa2) || pesquisa2 == null).ToList ());
+                }
+            }
+            else {
+                return View (db.Eventos.Where (x => x.nome_Evento.Contains (pesquisa2) || pesquisa2 == null).ToList ());
+            }    
         }
 
         // GET: Eventos/Details/5
@@ -26,20 +34,37 @@ namespace ARCVDS_Final.Controllers {
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction ("Index");
             }
             Eventos eventos = db.Eventos.Find(id);
             if (eventos == null)
             {
-                return HttpNotFound();
+                return RedirectToAction ("Index");
             }
-            return View(eventos);
+            if(!User.Identity.IsAuthenticated) {
+                return RedirectToAction ("AcessoRestrito", "Erros");
+                if(User.IsInRole ("Admnistrador")) {
+                    return View (eventos);
+                }
+            }
+            else {
+                return View (eventos);
+            }
         }
 
         // GET: Eventos/Create
         public ActionResult Create()
         {
-            return View();
+            if(!User.Identity.IsAuthenticated) {
+                return RedirectToAction ("AcessoRestrito", "Erros");
+                if(User.IsInRole ("Admnistrador")) {
+                    return View (db.Eventos.ToList());
+                }
+            }
+            else {
+                //return View (db.Beneficios.ToList ());
+                return View ();
+            }
         }
 
         // POST: Eventos/Create
@@ -64,14 +89,22 @@ namespace ARCVDS_Final.Controllers {
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction ("Index");
             }
             Eventos eventos = db.Eventos.Find(id);
             if (eventos == null)
             {
-                return HttpNotFound();
+                return RedirectToAction ("Index");
             }
-            return View(eventos);
+            if(!User.Identity.IsAuthenticated) {
+                return RedirectToAction ("AcessoRestrito", "Erros");
+                if(User.IsInRole ("Admnistrador")) {
+                    return View (eventos);
+                }
+            }
+            else {
+                return View (eventos);
+            }
         }
 
         // POST: Eventos/Edit/5
@@ -95,14 +128,22 @@ namespace ARCVDS_Final.Controllers {
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction ("Index");
             }
             Eventos eventos = db.Eventos.Find(id);
             if (eventos == null)
             {
-                return HttpNotFound();
+                return RedirectToAction ("Index");
             }
-            return View(eventos);
+            if(!User.Identity.IsAuthenticated) {
+                return RedirectToAction ("AcessoRestrito", "Erros");
+                if(User.IsInRole ("Admnistrador")) {
+                    return View (eventos);
+                }
+            }
+            else {
+                return View (eventos);
+            }
         }
 
         // POST: Eventos/Delete/5

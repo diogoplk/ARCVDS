@@ -10,7 +10,7 @@ using ARCVDS_Final.Models;
 
 namespace ARCVDS_Final.Controllers
 {
-
+    
     public class BeneficiosController : Controller
     {
         //private SociosDB db = new SociosDB();
@@ -19,11 +19,10 @@ namespace ARCVDS_Final.Controllers
 
         // GET: Beneficios
         //[Authorize (Roles = "Administrador")]
-        public ActionResult Index()
-        {
+        public ActionResult Index() { 
             if(!User.Identity.IsAuthenticated) {
-               return RedirectToAction ("Index","Home");
-                if(User.IsInRole ("Admnistrador")) {
+               return RedirectToAction ("AcessoRestrito","Erros");
+                if(User.IsInRole ("Admin")) {
                     return View (db.Beneficios.ToList ());
                 }
             }
@@ -34,8 +33,7 @@ namespace ARCVDS_Final.Controllers
         }
 
         // GET: Beneficios/Details/5
-        public ActionResult Details(int? id)
-        {
+        public ActionResult Details(int? id) { 
             if (id == null)
             {
                 return RedirectToAction ("Index");
@@ -45,13 +43,31 @@ namespace ARCVDS_Final.Controllers
             {
                 return RedirectToAction ("Index");
             }
-            return View(beneficios);
+            if(!User.Identity.IsAuthenticated) {
+                return RedirectToAction ("AcessoRestrito", "Erros");
+                if(User.IsInRole ("Admin")) {
+                    return View (beneficios);
+                }
+            }
+            else {
+                return View (beneficios);
+            }
         }
 
         // GET: Beneficios/Create
         public ActionResult Create()
         {
-            return View();
+            if(!User.Identity.IsAuthenticated) {
+                return RedirectToAction ("AcessoRestrito", "Erros");
+                if(User.IsInRole ("Admin")) {
+                    return View (db.Beneficios.ToList ());
+                }
+            }
+            else {
+                //return View (db.Beneficios.ToList ());
+                return View ();
+            }
+            
         }
 
         // POST: Beneficios/Create
@@ -83,7 +99,16 @@ namespace ARCVDS_Final.Controllers
             {
                 return RedirectToAction ("Index");
             }
-            return View(beneficios);
+            if(!User.Identity.IsAuthenticated) {
+                return RedirectToAction ("AcessoRestrito", "Erros");
+                if(User.IsInRole ("Admin")) {
+                    return View (beneficios);
+                }
+            }
+            else {
+                return View (beneficios);
+            }
+
         }
 
         // POST: Beneficios/Edit/5
@@ -114,7 +139,15 @@ namespace ARCVDS_Final.Controllers
             {
                 return RedirectToAction ("Index");
             }
-            return View(beneficios);
+            if(!User.Identity.IsAuthenticated) {
+                return RedirectToAction ("AcessoRestrito", "Erros");
+                if(User.IsInRole ("Admin")) {
+                    return View (beneficios);
+                }
+            }
+            else {
+                return View (beneficios);
+            }
         }
 
         // POST: Beneficios/Delete/5

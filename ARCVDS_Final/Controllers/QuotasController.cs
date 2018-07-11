@@ -10,7 +10,6 @@ using ARCVDS_Final.Models;
 
 namespace ARCVDS_Final.Controllers
 {
-    [Authorize(Roles = "Admin, Funcionarios,Socios")]
     public class QuotasController : Controller
     {
         //private SociosDB db = new SociosDB();
@@ -21,10 +20,23 @@ namespace ARCVDS_Final.Controllers
         public ActionResult Index()
         {
             var quotas = db.Quotas.Include(q => q.Pessoa);
-            return View(quotas.ToList());
+
+            if(!User.Identity.IsAuthenticated) {
+                return RedirectToAction ("AcessoRestrito", "Erros");
+                if(User.IsInRole ("Admin")) {
+                    return View (db.Quotas.ToList ());
+                }
+            }
+            else {
+                return View (db.Quotas.ToList ());
+            }
         }
         // GET: Quotas
         public ActionResult QuotasUser() {
+
+            if(!User.Identity.IsAuthenticated) {
+                return RedirectToAction ("AcessoRestrito", "Erros");
+            }
 
             if (User.IsInRole("Admin")) {
 
@@ -42,14 +54,22 @@ namespace ARCVDS_Final.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction ("Index");
             }
             Quotas quotas = db.Quotas.Find(id);
             if (quotas == null)
             {
-                return HttpNotFound();
+                return RedirectToAction ("Index");
             }
-            return View(quotas);
+            if(!User.Identity.IsAuthenticated) {
+                return RedirectToAction ("AcessoRestrito", "Erros");
+                if(User.IsInRole ("Admin")) {
+                    return View (db.Quotas.ToList ());
+                }
+            }
+            else {
+                return View (db.Quotas.ToList ());
+            }
         }
 
         // GET: Quotas/Create
@@ -82,15 +102,23 @@ namespace ARCVDS_Final.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction ("Index");
             }
             Quotas quotas = db.Quotas.Find(id);
             if (quotas == null)
             {
-                return HttpNotFound();
+                return RedirectToAction ("Index");
             }
             ViewBag.PessoaFK = new SelectList(db.Pessoas, "Pessoa_ID", "Nome", quotas.PessoaFK);
-            return View(quotas);
+            if(!User.Identity.IsAuthenticated) {
+                return RedirectToAction ("AcessoRestrito", "Erros");
+                if(User.IsInRole ("Admin")) {
+                    return View (quotas);
+                }
+            }
+            else {
+                return View (quotas);
+            }
         }
 
         // POST: Quotas/Edit/5
@@ -115,14 +143,22 @@ namespace ARCVDS_Final.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction ("Index");
             }
             Quotas quotas = db.Quotas.Find(id);
             if (quotas == null)
             {
-                return HttpNotFound();
+                return RedirectToAction ("Index");
             }
-            return View(quotas);
+            if(!User.Identity.IsAuthenticated) {
+                return RedirectToAction ("AcessoRestrito", "Erros");
+                if(User.IsInRole ("Admin")) {
+                    return View (quotas);
+                }
+            }
+            else {
+                return View (quotas);
+            }
         }
 
         // POST: Quotas/Delete/5
