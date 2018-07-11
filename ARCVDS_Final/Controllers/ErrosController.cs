@@ -13,13 +13,13 @@ namespace ARCVDS_Final.Controllers
             return View();
         }
         public ActionResult Erro404() {
-            return View ();
+                return View ();
         }
         public ActionResult AcessoRestrito() {
-            return View ();
+                return View ();
         }
         public ActionResult Indisponivel() {
-            return View ();
+                return View ();
         }
     }
 }

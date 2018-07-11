@@ -19,11 +19,8 @@ namespace ARCVDS_Final.Controllers
         {
             //return View(db.Pessoas.ToList());
 
-            if(!User.Identity.IsAuthenticated) {
+            if(!User.IsInRole ("Admin") && !User.IsInRole ("Funcionarios")) {
                 return RedirectToAction ("AcessoRestrito", "Erros");
-                if(User.IsInRole ("Admnistrador")) {
-                    return View(db.Pessoas.Where (x => x.Nome.StartsWith (pesquisa) || pesquisa == null).ToList ());
-                }
             }
             else {
                 return View (db.Pessoas.Where (x => x.Nome.StartsWith (pesquisa) || pesquisa == null).ToList ());
@@ -42,11 +39,8 @@ namespace ARCVDS_Final.Controllers
             {
                 return RedirectToAction ("Index");
             }
-            if(!User.Identity.IsAuthenticated) {
+            if(!User.IsInRole ("Admin") && !User.IsInRole ("Funcionarios")) {
                 return RedirectToAction ("AcessoRestrito", "Erros");
-                if(User.IsInRole ("Admnistrador")) {
-                    return View (pessoas);
-                }
             }
             else {
                 return View (pessoas);
@@ -56,11 +50,8 @@ namespace ARCVDS_Final.Controllers
         // GET: Pessoas/Create
         public ActionResult Create()
         {
-            if(!User.Identity.IsAuthenticated) {
+            if(!User.IsInRole ("Admin") && !User.IsInRole ("Funcionarios")) {
                 return RedirectToAction ("AcessoRestrito", "Erros");
-                if(User.IsInRole ("Admnistrador")) {
-                    return View (db.Pagamentos.ToList ());
-                }
             }
             else {
                 //return View (db.Beneficios.ToList ());
@@ -98,11 +89,8 @@ namespace ARCVDS_Final.Controllers
             {
                 return RedirectToAction ("Index");
             }
-            if(!User.Identity.IsAuthenticated) {
+            if(!User.IsInRole ("Admin") && !User.IsInRole ("Funcionarios")) {
                 return RedirectToAction ("AcessoRestrito", "Erros");
-                if(User.IsInRole ("Admnistrador")) {
-                    return View (pessoas);
-                }
             }
             else {
                 return View (pessoas);
@@ -137,11 +125,8 @@ namespace ARCVDS_Final.Controllers
             {
                 return RedirectToAction ("Index");
             }
-            if(!User.Identity.IsAuthenticated) {
+            if(!User.IsInRole ("Admin") && !User.IsInRole ("Funcionarios")) {
                 return RedirectToAction ("AcessoRestrito", "Erros");
-                if(User.IsInRole ("Admnistrador")) {
-                    return View (pessoas);
-                }
             }
             else {
                 return View (pessoas);

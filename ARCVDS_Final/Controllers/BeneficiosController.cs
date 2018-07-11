@@ -19,12 +19,9 @@ namespace ARCVDS_Final.Controllers
 
         // GET: Beneficios
         //[Authorize (Roles = "Administrador")]
-        public ActionResult Index() { 
-            if(!User.Identity.IsAuthenticated) {
-               return RedirectToAction ("AcessoRestrito","Erros");
-                if(User.IsInRole ("Admin")) {
-                    return View (db.Beneficios.ToList ());
-                }
+        public ActionResult Index() {
+            if(!User.IsInRole ("Admin") && !User.IsInRole ("Funcionarios")) {
+                return RedirectToAction ("AcessoRestrito", "Erros");
             }
             else {
                 return View (db.Beneficios.ToList ());
@@ -57,11 +54,8 @@ namespace ARCVDS_Final.Controllers
         // GET: Beneficios/Create
         public ActionResult Create()
         {
-            if(!User.Identity.IsAuthenticated) {
+            if(!User.IsInRole ("Admin") && !User.IsInRole ("Funcionarios")) {
                 return RedirectToAction ("AcessoRestrito", "Erros");
-                if(User.IsInRole ("Admin")) {
-                    return View (db.Beneficios.ToList ());
-                }
             }
             else {
                 //return View (db.Beneficios.ToList ());
@@ -99,11 +93,8 @@ namespace ARCVDS_Final.Controllers
             {
                 return RedirectToAction ("Index");
             }
-            if(!User.Identity.IsAuthenticated) {
+            if(!User.IsInRole ("Admin") && !User.IsInRole ("Funcionarios")) {
                 return RedirectToAction ("AcessoRestrito", "Erros");
-                if(User.IsInRole ("Admin")) {
-                    return View (beneficios);
-                }
             }
             else {
                 return View (beneficios);
@@ -139,11 +130,8 @@ namespace ARCVDS_Final.Controllers
             {
                 return RedirectToAction ("Index");
             }
-            if(!User.Identity.IsAuthenticated) {
+            if(!User.IsInRole ("Admin") && !User.IsInRole ("Funcionarios")) {
                 return RedirectToAction ("AcessoRestrito", "Erros");
-                if(User.IsInRole ("Admin")) {
-                    return View (beneficios);
-                }
             }
             else {
                 return View (beneficios);

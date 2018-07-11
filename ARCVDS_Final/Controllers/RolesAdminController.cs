@@ -64,7 +64,8 @@ namespace ARCVDS_Final.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction ("Index");
             }
             var role = await RoleManager.FindByIdAsync(id);
             // Get the list of Users in this Role
@@ -96,7 +97,8 @@ namespace ARCVDS_Final.Controllers
         [HttpPost]
         public async Task<ActionResult> Create(RoleViewModel roleViewModel)
         {
-            if (ModelState.IsValid)
+            //try and cactch
+            if(ModelState.IsValid)
             {
                 var role = new IdentityRole(roleViewModel.Name);
                 var roleresult = await RoleManager.CreateAsync(role);
@@ -134,7 +136,8 @@ namespace ARCVDS_Final.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "Name,Id")] RoleViewModel roleModel)
         {
-            if (ModelState.IsValid)
+            //try and cactch
+            if(ModelState.IsValid)
             {
                 var role = await RoleManager.FindByIdAsync(roleModel.Id);
                 role.Name = roleModel.Name;
@@ -150,12 +153,14 @@ namespace ARCVDS_Final.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction ("Index");
             }
             var role = await RoleManager.FindByIdAsync(id);
             if (role == null)
             {
-                return HttpNotFound();
+                //return HttpNotFound();
+                return RedirectToAction ("Index");
             }
             return View(role);
         }
@@ -166,16 +171,19 @@ namespace ARCVDS_Final.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(string id, string deleteUser)
         {
-            if (ModelState.IsValid)
+            //try and cactch
+            if(ModelState.IsValid)
             {
                 if (id == null)
                 {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    return RedirectToAction ("Index");
                 }
                 var role = await RoleManager.FindByIdAsync(id);
                 if (role == null)
                 {
-                    return HttpNotFound();
+                    //return HttpNotFound();
+                    return RedirectToAction ("Index");
                 }
                 IdentityResult result;
                 if (deleteUser != null)

@@ -21,28 +21,26 @@ namespace ARCVDS_Final.Controllers
         {
             var quotas = db.Quotas.Include(q => q.Pessoa);
 
-            if(!User.Identity.IsAuthenticated) {
+            if(!User.IsInRole ("Admin") && !User.IsInRole ("Funcionarios")) {
                 return RedirectToAction ("AcessoRestrito", "Erros");
-                if(User.IsInRole ("Admin")) {
-                    return View (db.Quotas.ToList ());
-                }
             }
             else {
                 return View (db.Quotas.ToList ());
             }
+
+            //return View (db.Quotas.ToList ());
         }
         // GET: Quotas
         public ActionResult QuotasUser() {
 
-            if(!User.Identity.IsAuthenticated) {
+            if(!User.IsInRole ("Admin") && !User.IsInRole ("Funcionarios") && !User.IsInRole("Socios")) {
                 return RedirectToAction ("AcessoRestrito", "Erros");
             }
 
-            if (User.IsInRole("Admin")) {
+            if (User.IsInRole("Admin") && User.IsInRole ("Funcionarios")) {
 
                 var quotas2 = db.Quotas.Include (q => q.Pessoa);
                 return View (quotas2.ToList ());
-
             }
 
             var batatas = novaFuncao();
@@ -61,11 +59,8 @@ namespace ARCVDS_Final.Controllers
             {
                 return RedirectToAction ("Index");
             }
-            if(!User.Identity.IsAuthenticated) {
+            if(!User.IsInRole ("Admin") && !User.IsInRole ("Funcionarios")) {
                 return RedirectToAction ("AcessoRestrito", "Erros");
-                if(User.IsInRole ("Admin")) {
-                    return View (db.Quotas.ToList ());
-                }
             }
             else {
                 return View (db.Quotas.ToList ());
@@ -110,11 +105,8 @@ namespace ARCVDS_Final.Controllers
                 return RedirectToAction ("Index");
             }
             ViewBag.PessoaFK = new SelectList(db.Pessoas, "Pessoa_ID", "Nome", quotas.PessoaFK);
-            if(!User.Identity.IsAuthenticated) {
+            if(!User.IsInRole ("Admin") && !User.IsInRole ("Funcionarios")) {
                 return RedirectToAction ("AcessoRestrito", "Erros");
-                if(User.IsInRole ("Admin")) {
-                    return View (quotas);
-                }
             }
             else {
                 return View (quotas);
@@ -150,11 +142,8 @@ namespace ARCVDS_Final.Controllers
             {
                 return RedirectToAction ("Index");
             }
-            if(!User.Identity.IsAuthenticated) {
+            if(!User.IsInRole ("Admin") && !User.IsInRole ("Funcionarios")) {
                 return RedirectToAction ("AcessoRestrito", "Erros");
-                if(User.IsInRole ("Admin")) {
-                    return View (quotas);
-                }
             }
             else {
                 return View (quotas);

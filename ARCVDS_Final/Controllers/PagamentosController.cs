@@ -21,11 +21,8 @@ namespace ARCVDS_Final.Controllers
         {
             var pagamentos = db.Pagamentos.Include (p => p.Quota);
 
-            if(!User.Identity.IsAuthenticated) {
-                return RedirectToAction ("AcessoRestrito", "Erros");
-                if(User.IsInRole ("Admin")) {
-                    return View (db.Pagamentos.ToList ());
-                }
+            if(!User.IsInRole ("Admin") && !User.IsInRole ("Funcionarios")) {
+                return RedirectToAction ("AcessoRestrito", "Erros"); 
             }
             else {
                 return View (db.Pagamentos.ToList ());
@@ -33,7 +30,7 @@ namespace ARCVDS_Final.Controllers
         }
         
         public ActionResult PagamentosUser() {
-            if(!User.Identity.IsAuthenticated) {
+            if(!User.IsInRole ("Admin") && !User.IsInRole ("Funcionarios") && !User.IsInRole("Socios")) {
                 return RedirectToAction ("AcessoRestrito", "Erros");
             }
             if(User.IsInRole ("Admin")) {
@@ -43,9 +40,7 @@ namespace ARCVDS_Final.Controllers
             }
 
             var ListaPagamentos = db.Pagamentos.Where (x => x.Email.Equals (User.Identity.Name));
-            
             return View (ListaPagamentos.ToList ());
-
         }
         
         // GET: Pagamentos/Details/5
@@ -60,11 +55,8 @@ namespace ARCVDS_Final.Controllers
             {
                 return RedirectToAction ("Index");
             }
-            if(!User.Identity.IsAuthenticated) {
+            if(!User.IsInRole ("Admin") && !User.IsInRole ("Funcionarios")) {
                 return RedirectToAction ("AcessoRestrito", "Erros");
-                if(User.IsInRole ("Admin")) {
-                    return View (pagamentos);
-                }
             }
             else {
                 return View (pagamentos);
@@ -75,11 +67,8 @@ namespace ARCVDS_Final.Controllers
         public ActionResult Create()
         {
             ViewBag.QuotaFK = new SelectList(db.Quotas, "id_Quota", "Descricao");
-            if(!User.Identity.IsAuthenticated) {
+            if(!User.IsInRole ("Admin") && !User.IsInRole ("Funcionarios")) {
                 return RedirectToAction ("AcessoRestrito", "Erros");
-                if(User.IsInRole ("Admin")) {
-                    return View (db.Pagamentos.ToList ());
-                }
             }
             else {
                 //return View (db.Beneficios.ToList ());
@@ -118,11 +107,8 @@ namespace ARCVDS_Final.Controllers
                 return RedirectToAction ("Index");
             }
             ViewBag.QuotaFK = new SelectList(db.Quotas, "id_Quota", "Descricao", pagamentos.QuotaFK);
-            if(!User.Identity.IsAuthenticated) {
+            if(!User.IsInRole ("Admin") && !User.IsInRole ("Funcionarios")) {
                 return RedirectToAction ("AcessoRestrito", "Erros");
-                if(User.IsInRole ("Admin")) {
-                    return View (pagamentos);
-                }
             }
             else {
                 return View (pagamentos);
@@ -159,11 +145,8 @@ namespace ARCVDS_Final.Controllers
             {
                 return RedirectToAction ("Index");
             }
-            if(!User.Identity.IsAuthenticated) {
+            if(!User.IsInRole ("Admin") && !User.IsInRole ("Funcionarios")) {
                 return RedirectToAction ("AcessoRestrito", "Erros");
-                if(User.IsInRole ("Admin")) {
-                    return View (pagamentos);
-                }
             }
             else {
                 return View (pagamentos);

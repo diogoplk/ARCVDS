@@ -65,7 +65,8 @@ namespace ARCVDS_Final.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction ("Index");
+
             }
             var user = await UserManager.FindByIdAsync(id);
 
@@ -88,6 +89,7 @@ namespace ARCVDS_Final.Controllers
         [HttpPost]
         public async Task<ActionResult> Create(RegisterViewModel userViewModel, params string[] selectedRoles)
         {
+            //try and cactch
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = userViewModel.Email, Email = userViewModel.Email };
@@ -126,12 +128,14 @@ namespace ARCVDS_Final.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction ("Index");
+
             }
             var user = await UserManager.FindByIdAsync(id);
             if (user == null)
             {
-                return HttpNotFound();
+                return RedirectToAction ("Index");
+
             }
 
             var userRoles = await UserManager.GetRolesAsync(user.Id);
@@ -155,12 +159,13 @@ namespace ARCVDS_Final.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "Email,Id")] EditUserViewModel editUser, params string[] selectedRole)
         {
+            //try and cactch
             if (ModelState.IsValid)
             {
                 var user = await UserManager.FindByIdAsync(editUser.Id);
                 if (user == null)
                 {
-                    return HttpNotFound();
+                    return RedirectToAction ("Index");
                 }
 
                 user.UserName = editUser.Email;
@@ -196,12 +201,14 @@ namespace ARCVDS_Final.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction ("Index");
+
             }
             var user = await UserManager.FindByIdAsync(id);
             if (user == null)
             {
-                return HttpNotFound();
+                return RedirectToAction ("Index");
+
             }
             return View(user);
         }
@@ -212,17 +219,20 @@ namespace ARCVDS_Final.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(string id)
         {
-            if (ModelState.IsValid)
+            //try and cactch
+            if(ModelState.IsValid)
             {
                 if (id == null)
                 {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    return RedirectToAction ("Index");
+
                 }
 
                 var user = await UserManager.FindByIdAsync(id);
                 if (user == null)
                 {
-                    return HttpNotFound();
+                    return RedirectToAction ("Index");
+
                 }
                 var result = await UserManager.DeleteAsync(user);
                 if (!result.Succeeded)

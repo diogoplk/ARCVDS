@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace ARCVDS_Final.Controllers
 {
+    [Authorize(Roles =("Socios,Admin,Funcionarios"))]
     public class ManageController : Controller
     {
         public ManageController()

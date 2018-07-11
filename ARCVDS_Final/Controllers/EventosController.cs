@@ -18,15 +18,13 @@ namespace ARCVDS_Final.Controllers {
         // GET: Eventos
         public ActionResult Index(string pesquisa2)
         {
-            if(!User.Identity.IsAuthenticated) {
+            if(!User.IsInRole ("Admin") && !User.IsInRole ("Funcionarios")) {
                 return RedirectToAction ("AcessoRestrito", "Erros");
-                if(User.IsInRole ("Admnistrador")) { 
-                    return View (db.Eventos.Where (x => x.nome_Evento.Contains (pesquisa2) || pesquisa2 == null).ToList ());
-                }
             }
-            else {
+            else { 
                 return View (db.Eventos.Where (x => x.nome_Evento.Contains (pesquisa2) || pesquisa2 == null).ToList ());
-            }    
+            }
+                //return View (db.Eventos.Where (x => x.nome_Evento.Contains (pesquisa2) || pesquisa2 == null).ToList ());
         }
 
         // GET: Eventos/Details/5
@@ -41,11 +39,8 @@ namespace ARCVDS_Final.Controllers {
             {
                 return RedirectToAction ("Index");
             }
-            if(!User.Identity.IsAuthenticated) {
+            if(!User.IsInRole ("Admin") && !User.IsInRole ("Funcionarios")) {
                 return RedirectToAction ("AcessoRestrito", "Erros");
-                if(User.IsInRole ("Admnistrador")) {
-                    return View (eventos);
-                }
             }
             else {
                 return View (eventos);
@@ -55,11 +50,8 @@ namespace ARCVDS_Final.Controllers {
         // GET: Eventos/Create
         public ActionResult Create()
         {
-            if(!User.Identity.IsAuthenticated) {
+            if(!User.IsInRole ("Admin") && !User.IsInRole ("Funcionarios")) {
                 return RedirectToAction ("AcessoRestrito", "Erros");
-                if(User.IsInRole ("Admnistrador")) {
-                    return View (db.Eventos.ToList());
-                }
             }
             else {
                 //return View (db.Beneficios.ToList ());
@@ -96,11 +88,8 @@ namespace ARCVDS_Final.Controllers {
             {
                 return RedirectToAction ("Index");
             }
-            if(!User.Identity.IsAuthenticated) {
+            if(!User.IsInRole ("Admin") && !User.IsInRole ("Funcionarios")) {
                 return RedirectToAction ("AcessoRestrito", "Erros");
-                if(User.IsInRole ("Admnistrador")) {
-                    return View (eventos);
-                }
             }
             else {
                 return View (eventos);
@@ -135,11 +124,8 @@ namespace ARCVDS_Final.Controllers {
             {
                 return RedirectToAction ("Index");
             }
-            if(!User.Identity.IsAuthenticated) {
+            if(!User.IsInRole ("Admin") && !User.IsInRole ("Funcionarios")) {
                 return RedirectToAction ("AcessoRestrito", "Erros");
-                if(User.IsInRole ("Admnistrador")) {
-                    return View (eventos);
-                }
             }
             else {
                 return View (eventos);
