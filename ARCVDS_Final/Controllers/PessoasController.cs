@@ -27,6 +27,15 @@ namespace ARCVDS_Final.Controllers
             }
         }
 
+        public ActionResult EditDados() {
+            if(User.IsInRole("Socios")) {
+                return View (db.Pessoas.Where (s => s.Email.Equals (User.Identity.Name)).ToList ());
+            }
+            else {
+                return View (db.Pessoas.ToList ());
+            }
+        }
+
         // GET: Pessoas/Details/5
         public ActionResult Details(int? id)
         {
@@ -39,7 +48,7 @@ namespace ARCVDS_Final.Controllers
             {
                 return RedirectToAction ("Index");
             }
-            if(!User.IsInRole ("Admin") && !User.IsInRole ("Funcionarios")) {
+            if(!User.IsInRole ("Admin") && !User.IsInRole ("Funcionarios") && !User.IsInRole("Socios")) {
                 return RedirectToAction ("AcessoRestrito", "Erros");
             }
             else {
@@ -66,13 +75,25 @@ namespace ARCVDS_Final.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Pessoa_ID,Nome,data_Nascimento,Sexo,Morada,Codigo_Postal,Nacionalidade,Email,numeroTelefone,numeroTelemovel,dataEntradaClube,UserName")] Pessoas pessoas)
         {
+
+            //try and cactch
+            pessoas.dataEntradaClube = DateTime.Today;
+
+            int novaPessoa = 0;
+            try {
+                novaPessoa = db.Pessoas.Max (p => p.Pessoa_ID) + 1;
+            }
+            catch(Exception) {
+                novaPessoa = 1;
+            }
+            pessoas.Pessoa_ID = novaPessoa;
+
             if (ModelState.IsValid)
             {
                 db.Pessoas.Add(pessoas);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             return View(pessoas);
         }
 
@@ -89,7 +110,7 @@ namespace ARCVDS_Final.Controllers
             {
                 return RedirectToAction ("Index");
             }
-            if(!User.IsInRole ("Admin") && !User.IsInRole ("Funcionarios")) {
+            if(!User.IsInRole ("Admin") && !User.IsInRole ("Funcionarios") && !User.IsInRole ("Socios")) {
                 return RedirectToAction ("AcessoRestrito", "Erros");
             }
             else {
@@ -108,7 +129,7 @@ namespace ARCVDS_Final.Controllers
             {
                 db.Entry(pessoas).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index");   
             }
             return View(pessoas);
         }

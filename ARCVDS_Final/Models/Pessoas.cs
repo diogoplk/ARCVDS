@@ -21,6 +21,10 @@ namespace ARCVDS_Final.Models {
         [DatabaseGenerated (DatabaseGeneratedOption.None)]
         public int Pessoa_ID { get; set; }
 
+        //[Index(IsUnique = true)]
+        //[Display(Name = "Nº Sócio")]
+        //public int NumeroSocio { get; set; }
+
         [Required]
         [StringLength(50)]
         [Display(Name = "Nome Completo")]
@@ -28,13 +32,14 @@ namespace ARCVDS_Final.Models {
         public string Nome { get; set; }
 
         [Required]
-        [DataType(DataType.Date)]
-        [Display(Name = "Data Nascimento")]
+        //[DataType (DataType.Date)]
+        [DisplayFormat (DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Display (Name = "Data Nascimento")]
         public DateTime data_Nascimento { get; set; }
 
         //[Required]
         [StringLength(1)]
-        [RegularExpression ("[M]|[F]",ErrorMessage = "Insira F para Femino, M para Masculino")]
+        [RegularExpression ("[M]|[F]",ErrorMessage = "Insira F para Feminino, M para Masculino")]
         [Display(Name = "Sexo")]
         public string Sexo { get; set; }
 
@@ -77,8 +82,9 @@ namespace ARCVDS_Final.Models {
         [Display(Name = "Telemóvel")]
         public string numeroTelemovel { get; set; }
 
-        [Required]
-        [DataType (DataType.Date)]
+        //[Required]
+        //[DisplayFormat (DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        //[DataType (DataType.Date)]
         [Display(Name ="Data de entrada para a associação")]
         public DateTime dataEntradaClube { get; set; }
 

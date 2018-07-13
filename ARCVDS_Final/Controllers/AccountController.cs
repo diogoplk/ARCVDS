@@ -150,12 +150,22 @@ namespace ARCVDS_Final.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register([Bind(Include= "Pessoa_ID,Nome,data_Nascimento,Sexo,Morada,Codigo_Postal,Nacionalidade,Email,Foto,numeroTelefone,numeroTelemovel,dataEntradaClube,UserName")]Pessoas pessoas,Pagamentos p,Quotas q,RegisterViewModel model,HttpPostedFileBase UploadFoto)
+        public async Task<ActionResult> Register([Bind(Include= "Pessoa_ID,Nome,data_Nascimento,Sexo,Morada,Codigo_Postal,Nacionalidade,Email,Foto,numeroTelefone,numeroTelemovel,dataEntradaClube,UserName")]Pessoas pessoas , RegisterViewModel model)
         {
-            model.Email = pessoas.Email;
 
-            //pessoas.Email = pessoas.UserName;
-            //pessoas.dataEntradaClube = DateTime.Today;
+            model.Email = pessoas.Email;
+            pessoas.UserName = pessoas.Email;
+            pessoas.dataEntradaClube = DateTime.Now;
+
+            int novaPessoa = 0;
+            try {
+                novaPessoa = db.Pessoas.Max (p => p.Pessoa_ID) + 1;
+            }
+            catch(Exception) {
+                novaPessoa = 1;
+            }
+
+            pessoas.Pessoa_ID = novaPessoa;
 
             if (ModelState.IsValid)
             {
@@ -166,11 +176,16 @@ namespace ARCVDS_Final.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    var RoleResult = await UserManager.AddToRoleAsync (user.Id, "Socios");
+                    if(!RoleResult.Succeeded) {
+                        ModelState.AddModelError ("", string.Format ("Não foi possível adicionar o utilizador à função."));
+                        return View (model);
+                    }
                     var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
                     ViewBag.Link = callbackUrl;
-                    return View("DisplayEmail");
+                    return View("Login");
                 }
                 AddErrors(result);
             }

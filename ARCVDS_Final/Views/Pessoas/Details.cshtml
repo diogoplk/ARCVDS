@@ -102,5 +102,11 @@
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Pessoa_ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @if(!User.IsInRole ("Funcionarios") && !User.IsInRole ("Admin")) {
+        @Html.ActionLink("Back to List", "EditDados")
+    }
+    else {
+        @Html.ActionLink("Back to List", "Index")
+    }
+
 </p>

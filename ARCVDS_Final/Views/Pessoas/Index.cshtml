@@ -19,10 +19,11 @@
         color:black;
     }
     a:hover {
-        color:darkred ;
+        color:#3276b1 ;
     }
     #criar {
         font-size:16px;
+        text-align:center;
     }
 </style>
 
@@ -36,9 +37,12 @@
 
 }
 
-<p id="criar">
-    @Html.ActionLink("Create New", "Create",FormMethod.Get)
-</p>
+<div>
+    <p id="criar">
+        @Html.ActionLink("Novo Sócio", "Create",FormMethod.Get)
+    </p>
+</div>
+<div class="container" >
 <table class="table">
     <tr id="colunas">
         <th>
@@ -129,3 +133,4 @@
             }
         }
         </table>
+    </div>

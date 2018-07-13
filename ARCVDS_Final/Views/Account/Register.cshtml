@@ -7,7 +7,7 @@
 
 <h2>@ViewBag.Title.</h2>
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "rowlateral", role = "form" }))
 {
     @Html.AntiForgeryToken()
     <h4>Queres ser sócio ? Da-lhe!</h4>
@@ -88,14 +88,7 @@
         <div class="col-md-10">
             @Html.EditorFor(m => m.pessoas.numeroTelemovel, new { htmlAttributes = new { @class = "form-control", @placeholder = "Número Telomovel",@maxlength = "13" } })
         </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.pessoas.dataEntradaClube, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.EditorFor(m => m.pessoas.dataEntradaClube, new { htmlAttributes = new { @class = "form-control", @placeholder = "Data de Entrada"} })
-        </div>
-    </div>
-    
+    </div>    
     <div>
         <input type="file" name="foto" id="foto" />
     </div>

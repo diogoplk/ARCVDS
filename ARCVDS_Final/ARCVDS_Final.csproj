@@ -353,6 +353,7 @@
     <Content Include="Views\Erros\Erro404.cshtml" />
     <Content Include="Views\Erros\AcessoRestrito.cshtml" />
     <Content Include="Views\Erros\Indisponivel.cshtml" />
+    <Content Include="Views\Pessoas\EditDados.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
