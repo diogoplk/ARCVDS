@@ -59,11 +59,11 @@ namespace ARCVDS_Final.Controllers
             {
                 return RedirectToAction ("Index");
             }
-            if(!User.IsInRole ("Admin") && !User.IsInRole ("Funcionarios")) {
+            if(!User.IsInRole ("Admin") && !User.IsInRole ("Funcionarios") && !User.IsInRole("Socios")) {
                 return RedirectToAction ("AcessoRestrito", "Erros");
             }
             else {
-                return View (db.Quotas.ToList ());
+                return View (quotas);
             }
         }
 
@@ -120,6 +120,8 @@ namespace ARCVDS_Final.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id_Quota,ano_Quota,Valor_Quota,Descricao,Paga,PessoaFK")] Quotas quotas)
         {
+            //quotas.Valor_Quota = Convert.ToDecimal(quotas.Valor_Quota);
+
             if (ModelState.IsValid)
             {
                 db.Entry(quotas).State = EntityState.Modified;
@@ -181,7 +183,6 @@ namespace ARCVDS_Final.Controllers
                 aux = item.Pessoa_ID;
 
             }
-
             return aux;
         }
 

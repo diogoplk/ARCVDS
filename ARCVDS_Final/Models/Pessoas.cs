@@ -62,6 +62,7 @@ namespace ARCVDS_Final.Models {
 
         [Required]
         [StringLength(30)]
+        [Index (IsUnique = true)]
         [Display(Name = "Email")]
         [RegularExpression(@"^[\w-\._\+%]+@(?:[\w-]+\.)+[\w]{2,6}$",ErrorMessage = "Please enter a valid email address")]
         public string Email { get; set; }
@@ -85,9 +86,8 @@ namespace ARCVDS_Final.Models {
         //[Required]
         //[DisplayFormat (DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         //[DataType (DataType.Date)]
-        [Display(Name ="Data de entrada para a associação")]
+        [Display(Name ="Data de Inscrição")]
         public DateTime dataEntradaClube { get; set; }
-
 
         [Display(Name = "UserName")]
         public string UserName { get; set; }

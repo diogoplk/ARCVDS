@@ -4,14 +4,18 @@
     ViewBag.Title = "EditDados";
 }
 
-<h2>EditDados</h2>
+<style>
+    #colunas{
+        text-align:center;
+    }
+</style>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<h2><a style="color:black">Queres ver/editar os teus dados pessoais ? Estás no sítio correto!</a> </h2>
+
+<div class="containercenas" style="background-color: rgba(255, 255, 255, 0.3); border-radius: 5px; text-align:center;">
 <table class="table">
-    <tr>
-        <th>
+    <tr  id="colunas">
+        <th >
             @Html.DisplayNameFor(model => model.Nome)
         </th>
         <th>
@@ -48,7 +52,7 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
+    <tr >
         <td>
             @Html.DisplayFor(modelItem => item.Nome)
         </td>
@@ -83,10 +87,11 @@
             @Html.DisplayFor(modelItem => item.dataEntradaClube)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Pessoa_ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Pessoa_ID }) |
+            @Html.ActionLink("Editar", "Edit", new { id=item.Pessoa_ID }) |
+            @Html.ActionLink("Todos os Dados", "Details", new { id=item.Pessoa_ID })
         </td>
     </tr>
 }
 
 </table>
+</div>

@@ -4,6 +4,24 @@
     width: 50%;
     margin: 0 auto;
 }
+.container flex-wrap {
+    flex-wrap:wrap;
+}
+
+#criar {
+        font-size:16px;
+        text-align:center;
+}
+.containercenas{
+    display:inline-flex;
+}
+#colunas {
+    text-align: center;
+}    
+
+.alinhar {
+    text-align:left;
+}
 
 body {
     text-align:center;

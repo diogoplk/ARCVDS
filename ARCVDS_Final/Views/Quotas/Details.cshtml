@@ -4,21 +4,26 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<style>
+    dt{
+        text-align:left;
+    }
+</style>
+<h2>Detalhe da Quota</h2>
 
 <div>
     <h4>Quotas</h4>
-    <hr />
+<div class="containercenas"  style="background-color: rgba(255, 255, 255, 0.3); border-radius: 5px; text-align:center;">
     <dl class="dl-horizontal">
-        <dt>
+        <dt class="alinhar">
             @Html.DisplayNameFor(model => model.Pessoa.Nome)
         </dt>
 
-        <dd>
+        <dd class="alinhar">
             @Html.DisplayFor(model => model.Pessoa.Nome)
         </dd>
 
-        <dt>
+        <dt class="alinhar">
             @Html.DisplayNameFor(model => model.ano_Quota)
         </dt>
 
@@ -26,7 +31,7 @@
             @Html.DisplayFor(model => model.ano_Quota)
         </dd>
 
-        <dt>
+        <dt class="alinhar">
             @Html.DisplayNameFor(model => model.Valor_Quota)
         </dt>
 
@@ -34,7 +39,7 @@
             @Html.DisplayFor(model => model.Valor_Quota)
         </dd>
 
-        <dt>
+        <dt class="alinhar">
             @Html.DisplayNameFor(model => model.Descricao)
         </dt>
 
@@ -42,7 +47,7 @@
             @Html.DisplayFor(model => model.Descricao)
         </dd>
 
-        <dt>
+        <dt class="alinhar">
             @Html.DisplayNameFor(model => model.Paga)
         </dt>
 
@@ -52,7 +57,7 @@
 
     </dl>
 </div>
+</div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id_Quota }) |
-    @Html.ActionLink("Back to List", "Index")
+    <button class="btn btn-primary"><a href="~/Quotas/Index" style="color:white;">Voltar à lista!</a></button>
 </p>

@@ -5,44 +5,37 @@
 }
 
 <style>
-    #colunas{
-        color:black;
-        font-weight:bold;
-        font-size:15px;
-    }
-    #valores {
-        color:black;
-        font-weight:bold;
-        font-size:13px;
-    }
     a {
         color:black;
     }
     a:hover {
         color:#3276b1 ;
     }
-    #criar {
-        font-size:16px;
-        text-align:center;
-    }
 </style>
 
-
-@using(Html.BeginForm ("Index","Pessoas",FormMethod.Get)) {
-    <div style="text-align:center;">
-        @Html.TextBox("pesquisa","",new { @style="width=200px;"})
-        <br />
-        <input type="submit" value="Search" class="form-control btn btn-primary" style="width:230px;" />
-    </div>
-
+@if(User.IsInRole("Admin")||User.IsInRole("Funcionarios")) {
+    <h1> <a style="color:black;">Consulta os dados sobre os teus sócios!</a></h1>
+}
+else {
+    <h1><a style="color:black;">Queres ver/editar os teus dados pessoais ? Estás no sítio correto!</a></h1>
 }
 
+@if(User.IsInRole("Admin") || User.IsInRole("Funcionarios")) {
+    using(Html.BeginForm ("Index","Pessoas",FormMethod.Get)) {
+        <div style="text-align:center;">
+            @Html.TextBox("pesquisa","",new { @style = "width=200px;" })
+            <br />
+            <input type="submit" value="Search" class="form-control btn btn-primary" style="width:230px;" />
+        </div>
+    }
+<hr />
 <div>
     <p id="criar">
-        @Html.ActionLink("Novo Sócio", "Create",FormMethod.Get)
+        <button class="btn btn-danger"><a href="~/Pessoas/Create" style="color:white;">Novo Sócio</a></button>
     </p>
 </div>
-<div class="container" >
+}
+<div class="containercenas" style="background-color: rgba(255, 255, 255, 0.3); border-radius: 5px; text-align:center;">
 <table class="table">
     <tr id="colunas">
         <th>
@@ -75,22 +68,19 @@
         <th>
             @Html.DisplayNameFor(model => model.dataEntradaClube)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserName)
-        </th>
         <th></th>
     </tr>
     
     @if (Model.Count() == 0)
     {
         <tr>
-            <td>Erro</td>
+            <td>Sócio não encontrado!</td>
         </tr>
     }
     else { 
 
     foreach (var item in Model) {
-    <tr id="valores">
+    <tr>
                 <td>
                  @item.Nome
                 </td>
@@ -122,15 +112,15 @@
                     @Html.DisplayFor(modelItem => item.dataEntradaClube)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.UserName)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id=item.Pessoa_ID }) |
-                    @Html.ActionLink("Details", "Details", new { id=item.Pessoa_ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id=item.Pessoa_ID })
+                    @Html.ActionLink("Editar", "Edit", new { id=item.Pessoa_ID })
+                    @Html.ActionLink("Ver Detalhes", "Details", new { id=item.Pessoa_ID })
+
+                    @if(User.IsInRole("Admin") || User.IsInRole("Funcionarios")) {
+                        @Html.ActionLink("Delete", "Delete", new { id=item.Pessoa_ID })
+                    }
                 </td>
             </tr>
             }
         }
         </table>
-    </div>
+</div>

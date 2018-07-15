@@ -4,11 +4,20 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<style>
+    a {
+        color:black;
+    }
+    a:hover {
+        color:#3276b1 ;
+    }
+</style>
 
+<h1><a style="color:black;">Lista de Quotas dos Sócios!</a></h1>
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <button class="btn btn-danger"><a href="~/Quotas/Create" style="color:white;">Nova quota?</a></button>
 </p>
+<div class="containercenas" style="background-color: rgba(255, 255, 255, 0.3); border-radius: 5px; text-align:center;">
 <table class="table">
     <tr>
         <th>
@@ -18,7 +27,7 @@
             @Html.DisplayNameFor(model => model.ano_Quota)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Valor_Quota)
+            @Html.DisplayNameFor(model => model.Valor_Quota)€
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Descricao)
@@ -38,7 +47,7 @@
             @Html.DisplayFor(modelItem => item.ano_Quota)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Valor_Quota)
+            @Html.DisplayFor(modelItem => item.Valor_Quota)€
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Descricao)
@@ -55,3 +64,4 @@
 }
 
 </table>
+</div>

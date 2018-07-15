@@ -19,20 +19,27 @@ namespace ARCVDS_Final.Controllers
         {
             //return View(db.Pessoas.ToList());
 
-            if(!User.IsInRole ("Admin") && !User.IsInRole ("Funcionarios")) {
+            if(!User.IsInRole ("Admin") && !User.IsInRole ("Funcionarios") && !User.IsInRole("Socios")) {
                 return RedirectToAction ("AcessoRestrito", "Erros");
+            }
+            if(User.IsInRole("Socios")) {
+                return View (db.Pessoas.Where (s => s.Email.Equals (User.Identity.Name)).ToList ());
             }
             else {
                 return View (db.Pessoas.Where (x => x.Nome.StartsWith (pesquisa) || pesquisa == null).ToList ());
             }
         }
-
+        //[Authorize(Roles ="Socios")]
         public ActionResult EditDados() {
+
             if(User.IsInRole("Socios")) {
                 return View (db.Pessoas.Where (s => s.Email.Equals (User.Identity.Name)).ToList ());
             }
-            else {
+            else if(User.IsInRole("Admin") || User.IsInRole("Funcionarios")) {
                 return View (db.Pessoas.ToList ());
+            }
+            else {
+                return RedirectToAction ("AcessoRestrito","Erros");
             }
         }
 
@@ -79,6 +86,8 @@ namespace ARCVDS_Final.Controllers
             //try and cactch
             pessoas.dataEntradaClube = DateTime.Today;
 
+            pessoas.UserName = pessoas.Email;
+
             int novaPessoa = 0;
             try {
                 novaPessoa = db.Pessoas.Max (p => p.Pessoa_ID) + 1;
@@ -112,6 +121,7 @@ namespace ARCVDS_Final.Controllers
             }
             if(!User.IsInRole ("Admin") && !User.IsInRole ("Funcionarios") && !User.IsInRole ("Socios")) {
                 return RedirectToAction ("AcessoRestrito", "Erros");
+                //return RedirectToAction ("Index","Home");
             }
             else {
                 return View (pessoas);
@@ -123,12 +133,22 @@ namespace ARCVDS_Final.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        //[Authorize(Roles =("Socios, Funcionarios,Admin"))]
         public ActionResult Edit([Bind(Include = "Pessoa_ID,Nome,data_Nascimento,Sexo,Morada,Codigo_Postal,Nacionalidade,Email,numeroTelefone,numeroTelemovel,dataEntradaClube,UserName")] Pessoas pessoas)
         {
+
+            //User currentUser = (User)Session["CurrentUser"];
+            string endEmail = TempData["socioUsername"].ToString ();
+            ApplicationUser app = db.Users.Where (x => x.UserName.Equals (endEmail)).SingleOrDefault ();
+
+            if(app != null) {
+                // atualiza o novo username de um sócio na tabela dos dados da conta
+                app.UserName = pessoas.Email;
+            }
             if (ModelState.IsValid)
             {
                 db.Entry(pessoas).State = EntityState.Modified;
-                db.SaveChanges();
+                db.SaveChanges();   
                 return RedirectToAction("Index");   
             }
             return View(pessoas);

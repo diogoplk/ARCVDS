@@ -34,7 +34,6 @@ namespace ARCVDS_Final.Controllers
                 return RedirectToAction ("AcessoRestrito", "Erros");
             }
             if(User.IsInRole ("Admin")) {
-
                 var pagamentos = db.Pagamentos.Include (p => p.Quota);
                 return View (pagamentos.ToList ());
             }

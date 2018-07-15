@@ -3,10 +3,10 @@
 @{
     ViewBag.Title = "Log in";
 }
-<div class="container text-center">
-<h2>Sócio que é Sócio tem as quotas em dia, por isso sê um bom sócio!</h2>
+<div class="container">
+<h1 style="color:black;">Sócio que é Sócio tem as quotas em dia, por isso sê um bom sócio!</h1>
 <div class="rowlateral">
-    <div class="col-md-10">
+    <div class="col-md-8">
         <section id="loginForm">
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" })) {
                 @Html.AntiForgeryToken()
@@ -14,7 +14,7 @@
                 <hr />
                 <div class="form-group">
                     @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10 text-center">
+                    <div class="col-md-10">
                         @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                     </div>
@@ -28,10 +28,10 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-10" style="text-align: left;">
-                        <input type="submit" value="Log in" class="btn btn-default" />
+                        <input type="submit" value="Entrar" class="btn btn-default" />
                     </div>
                 </div>
-                                <hr />
+                 <hr />
             }
         </section>
     </div>
