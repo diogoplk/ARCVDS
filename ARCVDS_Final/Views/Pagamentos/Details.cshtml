@@ -1,50 +1,60 @@
 ﻿@model ARCVDS_Final.Models.Pagamentos
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalhes";
 }
-
-<h2>Details</h2>
+<style>
+    dt {
+        text-align: left;
+        color:black;
+    }
+</style>
+<h2>Detalhes do pagamento!</h2>
 
 <div>
-    <h4>Pagamentos</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Quota.Descricao)
-        </dt>
+    <div class="containercenas" style="background-color: rgba(255, 255, 255, 0.3); border-radius: 5px; text-align:center;">
+        <hr />
+        <dl class="dl-horizontal">
+            <dt class="alinhar">
+                @Html.DisplayNameFor(model => model.Quota.Descricao)
+            </dt class="alinhar">
 
-        <dd>
-            @Html.DisplayFor(model => model.Quota.Descricao)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Quota.Descricao)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Valor_Pagamento)
-        </dt>
+            <dt class="alinhar" >
+                @Html.DisplayNameFor(model => model.Valor_Pagamento)
+            </dt class="alinhar">
 
-        <dd>
-            @Html.DisplayFor(model => model.Valor_Pagamento)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Valor_Pagamento)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.data_Pagamento)
-        </dt>
+            <dt class="alinhar">
+                @Html.DisplayNameFor(model => model.data_Pagamento)
+            </dt class="alinhar">
 
-        <dd>
-            @Html.DisplayFor(model => model.data_Pagamento)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.data_Pagamento)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ultima_Ano_Pago)
-        </dt>
+            <dt class="alinhar">
+                @Html.DisplayNameFor(model => model.ultima_Ano_Pago)
+            </dt class="alinhar">
 
-        <dd>
-            @Html.DisplayFor(model => model.ultima_Ano_Pago)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.ultima_Ano_Pago)
+            </dd>
 
-    </dl>
+        </dl>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id_Pagamento }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<h1>
+    @if(User.IsInRole("Socios")) {
+        <a href="/Pagamentos/PagamentosUser" style="color:white;" class="btn btn-primary">Voltar à lista!</a>
+    }
+    else {
+        <a href="/Pagamentos/Index" style="color:white;" class="btn btn-primary">Voltar à lista!</a>
+    }
+</h1>

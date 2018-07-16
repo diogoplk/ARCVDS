@@ -11,7 +11,7 @@ namespace ARCVDS_Final.Models {
         public Eventos() {
             this.Pessoas = new HashSet<Pessoas>();
             //this.ListaFotos = new HashSet<FotografiasEventos> ();
-            this.ListaFotos = new HashSet<FotografiasEventos> ();
+            //this.ListaFotos = new HashSet<FotografiasEventos> ();
         }
 
         [Required]
@@ -49,7 +49,7 @@ namespace ARCVDS_Final.Models {
 
         //public virtual ICollection<FotografiasEventos> ListaFotos { get; set; }
 
-        public virtual ICollection<FotografiasEventos> ListaFotos { get; set; }
+        //public virtual ICollection<FotografiasEventos> ListaFotos { get; set; }
 
     }
 }

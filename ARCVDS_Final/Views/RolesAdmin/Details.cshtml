@@ -1,44 +1,48 @@
 ﻿@model Microsoft.AspNet.Identity.EntityFramework.IdentityRole
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalhes";
 }
 
-<h2>Details.</h2>
+<style>
+    dt {
+        text-align: left;
+        color: black;
+    }
+</style>
+<h2><a style="color:black;">Detalhes da Role</a></h2>
 
 <div>
-    <h4>Roles.</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-    </dl>
-</div>
-<h4>List of users in this role</h4>
-@if (ViewBag.UserCount == 0)
-{
-    <hr />
-    <p>No users found in this role.</p>
-}
-
-<table class="table">
-
-    @foreach (var item in ViewBag.Users)
-    {
-        <tr>
-            <td>
-                @item.UserName
-            </td>
-        </tr>
+    <div class="containercenas" style="background-color: rgba(255, 255, 255, 0.3); border-radius: 5px; text-align:center;">
+        <dl class="dl-horizontal">
+            <dt class="alinhar" >
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+        </dl>
+    </div>
+    <h4 style="color:black;">List of users in this role</h4>
+    @if(ViewBag.UserCount == 0) {
+        <hr />
+        <p style="color:black;">No users found in this role.</p>
     }
-</table>
+
+    <table class="table">
+
+        @foreach(var item in ViewBag.Users) {
+            <tr>
+                <td style="color:black;">
+                    @item.UserName
+                </td>
+            </tr>
+        }
+    </table>
+</div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    <a href="/RolesAdmin/Index" style="color:white;" class="btn btn-primary">Lista de Roles</a>
 </p>
 
 

@@ -199,7 +199,6 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BeneficiosController.cs" />
     <Compile Include="Controllers\ErrosController.cs" />
-    <Compile Include="Controllers\EventosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PagamentosController.cs" />
@@ -215,7 +214,6 @@
     <Compile Include="Models\AdminViewModel.cs" />
     <Compile Include="Models\Beneficios.cs" />
     <Compile Include="Models\Eventos.cs" />
-    <Compile Include="Models\FotografiasEventos.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Pagamentos.cs" />
@@ -226,6 +224,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="BackGroundImage\fundo.jpg" />
+    <Content Include="BackGroundImage\fundo2.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -321,11 +320,6 @@
     <Content Include="Views\Beneficios\Details.cshtml" />
     <Content Include="Views\Beneficios\Edit.cshtml" />
     <Content Include="Views\Beneficios\Index.cshtml" />
-    <Content Include="Views\FotografiasEventos\Create.cshtml" />
-    <Content Include="Views\FotografiasEventos\Delete.cshtml" />
-    <Content Include="Views\FotografiasEventos\Details.cshtml" />
-    <Content Include="Views\FotografiasEventos\Edit.cshtml" />
-    <Content Include="Views\FotografiasEventos\Index.cshtml" />
     <Content Include="Views\Pagamentos\Create.cshtml" />
     <Content Include="Views\Pagamentos\Delete.cshtml" />
     <Content Include="Views\Pagamentos\Details.cshtml" />
@@ -336,11 +330,6 @@
     <Content Include="Views\Quotas\Details.cshtml" />
     <Content Include="Views\Quotas\Edit.cshtml" />
     <Content Include="Views\Quotas\Index.cshtml" />
-    <Content Include="Views\Eventos\Create.cshtml" />
-    <Content Include="Views\Eventos\Delete.cshtml" />
-    <Content Include="Views\Eventos\Details.cshtml" />
-    <Content Include="Views\Eventos\Edit.cshtml" />
-    <Content Include="Views\Eventos\Index.cshtml" />
     <Content Include="Views\Pessoas\Create.cshtml" />
     <Content Include="Views\Pessoas\Delete.cshtml" />
     <Content Include="Views\Pessoas\Details.cshtml" />

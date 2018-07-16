@@ -17,6 +17,7 @@ namespace ARCVDS_Final.Models {
         public int id_Quota { get; set; }
         
         [Required]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         [Display(Name = "Ano da Quota")]
         public DateTime ano_Quota { get; set; }
@@ -24,7 +25,7 @@ namespace ARCVDS_Final.Models {
 
         [Required]
         [Display(Name ="Valor da Quota")]
-        public Decimal Valor_Quota { get; set; }
+        public int Valor_Quota { get; set; }
 
         [Required]
         [Display(Description ="Quantidade paga/meses")]
@@ -36,9 +37,7 @@ namespace ARCVDS_Final.Models {
 
         [Required]
         [Display(Description = ("Quota paga ou não paga"),Name = "Quota Paga?")]
-        public Boolean Paga {
-            get;set;
-        }
+        public Boolean Paga {get;set;}
 
         /**********************/
         [ForeignKey("Pessoa")]

@@ -54,7 +54,7 @@ namespace ARCVDS_Final.Controllers
             {
                 return RedirectToAction ("Index");
             }
-            if(!User.IsInRole ("Admin") && !User.IsInRole ("Funcionarios")) {
+            if(!User.IsInRole ("Admin") && !User.IsInRole ("Funcionarios") && !User.IsInRole("Socios")) {
                 return RedirectToAction ("AcessoRestrito", "Erros");
             }
             else {
@@ -80,8 +80,14 @@ namespace ARCVDS_Final.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_Pagamento,Valor_Pagamento,data_Pagamento,ultima_Ano_Pago,QuotaFK")] Pagamentos pagamentos)
+        public ActionResult Create([Bind(Include = "id_Pagamento,Valor_Pagamento,data_Pagamento,ultima_Ano_Pago,QuotaFK")] Pagamentos pagamentos, string data_Pagamento)
         {
+            //DateTime DataP = DateTime.Parse(data_Pagamento);
+            //pagamentos.data_Pagamento = DataP;
+
+            DateTime dataP = DateTime.Parse(data_Pagamento);
+            pagamentos.data_Pagamento = dataP;
+
             if (ModelState.IsValid)
             {
                 db.Pagamentos.Add(pagamentos);
@@ -120,8 +126,10 @@ namespace ARCVDS_Final.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_Pagamento,Valor_Pagamento,data_Pagamento,ultima_Ano_Pago,QuotaFK")] Pagamentos pagamentos)
+        public ActionResult Edit([Bind(Include = "id_Pagamento,Valor_Pagamento,data_Pagamento,ultima_Ano_Pago,QuotaFK")] Pagamentos pagamentos, FormCollection formCollection)
         {
+            pagamentos.data_Pagamento = DateTime.Parse(formCollection["data_Pagamento"]);
+
             if (ModelState.IsValid)
             {
                 db.Entry(pagamentos).State = EntityState.Modified;
@@ -172,7 +180,7 @@ namespace ARCVDS_Final.Controllers
             base.Dispose(disposing);
         }
         
-        //public int novaFuncao() {
+        //public int GetLoggedUserId() {
 
         //    var ListaQuotas = db.Pagamentos.Where (x => x.Email.Equals (User.Identity.Name));
         //    var aux = 0;

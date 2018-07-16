@@ -1,66 +1,59 @@
 ﻿@model IEnumerable<ARCVDS_Final.Models.Pagamentos>
 
 @{
-    ViewBag.Title = "PagamentosUser";
+    ViewBag.Title = "Pagamentos Utilizador";
 }
 
-<h2>PagamentosUser</h2>
+<h1><a style="color:black;">Vê se tens tudo em dia jovem!</a></h1>
+<div class="containercenas" style="background-color: rgba(255, 255, 255, 0.3); border-radius: 5px; text-align:center;">
+    <table class="table">
+        <tr>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Quota.id_Quota)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Quota.ano_Quota)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quota.Descricao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Valor_Pagamento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.data_Pagamento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th></th>
+        </tr>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-       <th>
-            @Html.DisplayNameFor(model => model.Quota.id_Quota)
-        </th>
+        @foreach(var item in Model) {
+        <tr>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Quota.id_Quota)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Quota.ano_Quota)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quota.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Valor_Pagamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.data_Pagamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.ActionLink("Detalhes", "Details", new { id = item.id_Pagamento })
+            </td>
+        </tr>
+        }
 
-        <th>
-            @Html.DisplayNameFor(model => model.Quota.Descricao)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Valor_Pagamento)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.data_Pagamento)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ultima_Ano_Pago)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-
-        <td>
-            @Html.DisplayFor(modelItem => item.Quota.id_Quota)
-        </td>
-
-        <td>
-            @Html.DisplayFor(modelItem => item.Quota.Descricao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Valor_Pagamento)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.data_Pagamento)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ultima_Ano_Pago)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id_Pagamento }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id_Pagamento }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id_Pagamento })
-        </td>
-    </tr>
-}
-
-</table>
+    </table>
+</div>

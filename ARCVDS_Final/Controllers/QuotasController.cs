@@ -43,7 +43,7 @@ namespace ARCVDS_Final.Controllers
                 return View (quotas2.ToList ());
             }
 
-            var batatas = novaFuncao();
+            var batatas = GetLoggedUserId();
             var quotas = db.Quotas.Where(x => x.PessoaFK == batatas);
             return View (quotas.ToList ());
         }
@@ -70,8 +70,14 @@ namespace ARCVDS_Final.Controllers
         // GET: Quotas/Create
         public ActionResult Create()
         {
-            ViewBag.PessoaFK = new SelectList(db.Pessoas, "Pessoa_ID", "Nome");
-            return View();
+            ViewBag.PessoaFK = new SelectList(db.Pessoas, "Id", "Nome");
+            if(!User.IsInRole("Admin") && !User.IsInRole("Funcionarios")) {
+                return RedirectToAction("AcessoRestrito", "Erros");
+            }
+            else {
+                //return View (db.Beneficios.ToList ());
+                return View();
+            }
         }
 
         // POST: Quotas/Create
@@ -79,8 +85,11 @@ namespace ARCVDS_Final.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_Quota,ano_Quota,Valor_Quota,Descricao,Paga,PessoaFK")] Quotas quotas)
+        public ActionResult Create([Bind(Include = "id_Quota,ano_Quota,Valor_Quota,Descricao,Paga,PessoaFK")] Quotas quotas, string DataQuota)
         {
+
+            quotas.ano_Quota = DateTime.Today;
+
             if (ModelState.IsValid)
             {
                 db.Quotas.Add(quotas);
@@ -88,7 +97,7 @@ namespace ARCVDS_Final.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.PessoaFK = new SelectList(db.Pessoas, "Pessoa_ID", "Nome", quotas.PessoaFK);
+            
             return View(quotas);
         }
 
@@ -104,7 +113,7 @@ namespace ARCVDS_Final.Controllers
             {
                 return RedirectToAction ("Index");
             }
-            ViewBag.PessoaFK = new SelectList(db.Pessoas, "Pessoa_ID", "Nome", quotas.PessoaFK);
+            
             if(!User.IsInRole ("Admin") && !User.IsInRole ("Funcionarios")) {
                 return RedirectToAction ("AcessoRestrito", "Erros");
             }
@@ -118,9 +127,19 @@ namespace ARCVDS_Final.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_Quota,ano_Quota,Valor_Quota,Descricao,Paga,PessoaFK")] Quotas quotas)
+        public ActionResult Edit([Bind(Include = "id_Quota,ano_Quota,Valor_Quota,Descricao,Paga,PessoaFK")] Quotas quotas, FormCollection formCollection)
         {
             //quotas.Valor_Quota = Convert.ToDecimal(quotas.Valor_Quota);
+            /*
+            var ValorQuota = db.Quotas.Where(p => p.Valor_Quota == 0);
+
+            if(ValorQuota == null) {
+                var Paga = db.Quotas.Where(x => x.Paga == true);
+                db.SaveChanges();
+            }
+            */
+
+            quotas.ano_Quota = DateTime.Parse(formCollection["ano_Quota"]);
 
             if (ModelState.IsValid)
             {
@@ -128,7 +147,6 @@ namespace ARCVDS_Final.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.PessoaFK = new SelectList(db.Pessoas, "Pessoa_ID", "Nome", quotas.PessoaFK);
             return View(quotas);
         }
 
@@ -155,9 +173,12 @@ namespace ARCVDS_Final.Controllers
         // POST: Quotas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
+        public ActionResult DeleteConfirmed(int id) {
             Quotas quotas = db.Quotas.Find(id);
+            //var PagamentosUser = db.Pagamentos.Where(x => x.QuotaFK == id).ToList();
+
+            db.Pagamentos.RemoveRange(quotas.ListaPagamentos);
+            
             db.Quotas.Remove(quotas);
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -172,7 +193,7 @@ namespace ARCVDS_Final.Controllers
             base.Dispose(disposing);
         }
 
-        public int novaFuncao()
+        public int GetLoggedUserId()
         {
             var listaUser = db.Pessoas.Where(x => x.Email.Equals(User.Identity.Name));
 
@@ -180,7 +201,7 @@ namespace ARCVDS_Final.Controllers
 
             foreach (var item in listaUser)
             {
-                aux = item.Pessoa_ID;
+                aux = item.Id;
 
             }
             return aux;

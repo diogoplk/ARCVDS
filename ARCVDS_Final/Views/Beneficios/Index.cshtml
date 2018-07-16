@@ -1,39 +1,49 @@
 ﻿@model IEnumerable<ARCVDS_Final.Models.Beneficios>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Benefícios";
 }
+<style>
+    a {
+        color: black;
+    }
 
-<h2>Index</h2>
+        a:hover {
+            color: #3276b1;
+        }
+</style>
+<h2><a style="color:black;">Lista de Benefícios!</a></h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a class="btn btn-danger" href="~/Beneficios/Create" style="color:white;">Novo benefício?</a>
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Categoria)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Descricao)
-        </th>
-        <th></th>
-    </tr>
+<div class="containercenas" style="background-color: rgba(255, 255, 255, 0.3); border-radius: 5px; text-align:center;">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Categoria)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Categoria)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descricao)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id_Beneficio }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id_Beneficio }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id_Beneficio })
-        </td>
-    </tr>
-}
+        @foreach(var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Categoria)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descricao)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.id_Beneficio }) |
+                    @Html.ActionLink("Detalhes", "Details", new { id = item.id_Beneficio }) |
+                    @Html.ActionLink("Apagar", "Delete", new { id = item.id_Beneficio })
+                </td>
+            </tr>
+        }
 
-</table>
+    </table>
+</div>

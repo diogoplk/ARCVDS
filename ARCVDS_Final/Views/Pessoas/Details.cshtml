@@ -1,114 +1,117 @@
 ﻿@model ARCVDS_Final.Models.Pessoas
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalhes";
 }
 
-<h2>Details</h2>
-
+<style>
+    dt {
+        text-align: left;
+        color:black;
+    }
+</style>
+<h2><a style="color:black;">Os seus detalhes</a></h2>
 <div>
-    <h4>Pessoas</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
+    <div class="containercenas" style="background-color: rgba(255, 255, 255, 0.3); border-radius: 5px; text-align:center;">
+        <hr />
+        <dl class="dl-horizontal">
+            <dt class="alinhar">
+                @Html.DisplayNameFor(model => model.Nome)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Nome)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
+            <dt class="alinhar">
+                @Html.DisplayNameFor(model => model.data_Nascimento)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.data_Nascimento)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.data_Nascimento)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.data_Nascimento)
-        </dd>
+            <dt class="alinhar">
+                @Html.DisplayNameFor(model => model.Sexo)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Sexo)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Sexo)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Sexo)
-        </dd>
+            <dt class="alinhar">
+                @Html.DisplayNameFor(model => model.Morada)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Morada)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Morada)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Morada)
-        </dd>
+            <dt class="alinhar">
+                @Html.DisplayNameFor(model => model.Codigo_Postal)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Codigo_Postal)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Codigo_Postal)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Codigo_Postal)
-        </dd>
+            <dt class="alinhar">
+                @Html.DisplayNameFor(model => model.Nacionalidade)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Nacionalidade)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Nacionalidade)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Nacionalidade)
-        </dd>
+            <dt class="alinhar">
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+            <dt class="alinhar">
+                @Html.DisplayNameFor(model => model.numeroTelefone)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.numeroTelefone)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.numeroTelefone)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.numeroTelefone)
-        </dd>
+            <dt class="alinhar">
+                @Html.DisplayNameFor(model => model.numeroTelemovel)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.numeroTelemovel)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.numeroTelemovel)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.numeroTelemovel)
-        </dd>
+            <dt class="alinhar">
+                @Html.DisplayNameFor(model => model.dataEntradaClube)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.dataEntradaClube)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.dataEntradaClube)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.dataEntradaClube)
-        </dd>
+            @*<dt class="alinhar">
+                @Html.DisplayNameFor(model => model.UserName)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.UserName)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.UserName)
+            </dd>*@
 
-        <dd>
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Pessoa_ID }) |
-
-    @if(!User.IsInRole ("Funcionarios") && !User.IsInRole ("Admin")) {
-        @Html.ActionLink("Back to List", "EditDados")
+        </dl>
+    </div>
+    </div>
+<h1>
+    @if(!User.IsInRole("Funcionarios") && !User.IsInRole("Admin")) {
+        <a href="/Quotas/QuotasUser" style="color:white;" class="btn btn-primary">Voltar à lista!</a>
     }
 
     else {
-        @Html.ActionLink("Back to List", "Index")
+        <a href="/Pessoas/Index" style="color:white;" class="btn btn-primary">Voltar à lista!</a>
     }
 
-</p>
+</h1>

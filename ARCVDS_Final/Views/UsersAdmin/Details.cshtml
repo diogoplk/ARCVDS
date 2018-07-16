@@ -1,16 +1,22 @@
 ﻿@model ARCVDS_Final.Models.ApplicationUser
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalhes";
 }
 
-<h2>Details.</h2>
+<style>
+    dt {
+        text-align: left;
+        color: black;
+    }
+</style>
+<h2><a style="color:black;">Detalhes da Role</a></h2>
 
 <div>
-    <h4>User</h4>
+    <div class="containercenas" style="background-color: rgba(255, 255, 255, 0.3); border-radius: 5px; text-align:center">
     <hr />
     <dl class="dl-horizontal">
-        <dt>
+        <dt class="alinhar" >
             @Html.DisplayNameFor(model => model.UserName)
         </dt>
         <dd>
@@ -18,28 +24,25 @@
         </dd>
     </dl>
 </div>
-<h4>List of roles for this user</h4>
-@if (ViewBag.RoleNames.Count == 0)
-{
-    <hr />
-    <p>No roles found for this user.</p>
-}
-
-<table class="table">
-
-    @foreach (var item in ViewBag.RoleNames)
-    {
-        <tr>
-            <td>
-                @item
-            </td>
-        </tr>
+    <h4 style="color:black;">List of roles for this user</h4>
+    @if(ViewBag.RoleNames.Count == 0) {
+        <hr />
+        <p>No roles found for this user.</p>
     }
-</table>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
 
+    <table class="table">
+
+        @foreach(var item in ViewBag.RoleNames) {
+            <tr>
+                <td style="color:black;">
+                    @item
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<p>
+    <a href="/UsersAdmin/Index" style="color:white;" class="btn btn-primary">Lista de Roles</a>
+</p>
 
 

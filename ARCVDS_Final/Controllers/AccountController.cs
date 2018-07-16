@@ -150,7 +150,7 @@ namespace ARCVDS_Final.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register([Bind(Include= "Pessoa_ID,Nome,data_Nascimento,Sexo,Morada,Codigo_Postal,Nacionalidade,Email,Foto,numeroTelefone,numeroTelemovel,dataEntradaClube,UserName")]Pessoas pessoas , RegisterViewModel model)
+        public async Task<ActionResult> Register([Bind(Include= "Id,Nome,data_Nascimento,Sexo,Morada,Codigo_Postal,Nacionalidade,Email,Foto,numeroTelefone,numeroTelemovel,dataEntradaClube,UserName")]Pessoas pessoas , RegisterViewModel model)
         {
 
             model.Email = pessoas.Email;
@@ -159,13 +159,13 @@ namespace ARCVDS_Final.Controllers
 
             int novaPessoa = 0;
             try {
-                novaPessoa = db.Pessoas.Max (p => p.Pessoa_ID) + 1;
+                novaPessoa = db.Pessoas.Max (p => p.Id) + 1;
             }
             catch(Exception) {
                 novaPessoa = 1;
             }
 
-            pessoas.Pessoa_ID = novaPessoa;
+            pessoas.Id = novaPessoa;
 
             if (ModelState.IsValid)
             {

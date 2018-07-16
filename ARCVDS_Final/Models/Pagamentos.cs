@@ -18,10 +18,12 @@ namespace ARCVDS_Final.Models {
 
         [Required]
         [Display(Name = "Valor Pagamento")]
-        public Decimal Valor_Pagamento { get; set; }
+        public int Valor_Pagamento { get; set; }
 
         [Required]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
+        [Display(Name = "Data Pagamento")]
         public DateTime data_Pagamento { get; set; }
 
         [Required]

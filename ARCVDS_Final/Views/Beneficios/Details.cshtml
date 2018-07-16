@@ -1,34 +1,39 @@
 ﻿@model ARCVDS_Final.Models.Beneficios
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalhes";
 }
-
-<h2>Details</h2>
+<style>
+    dt {
+        text-align: left;
+        color: black;
+    }
+</style>
+<h2><a style="color:black;">Detalhe do Benefício </a></h2>
 
 <div>
-    <h4>Beneficios</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Categoria)
-        </dt>
+    <div class="containercenas" style="background-color: rgba(255, 255, 255, 0.3); border-radius: 5px; text-align:center;">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Categoria)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Categoria)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Categoria)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Descricao)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Descricao)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Descricao)
+            </dd>
 
-    </dl>
+        </dl>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id_Beneficio }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<h3>
+    <a class="btn btn-primary" href="/Beneficios/Index" style="color:white;">Voltar à lista!</a>
+</h3>

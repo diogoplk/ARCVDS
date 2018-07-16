@@ -46,7 +46,7 @@ namespace ARCVDS_Final.Models
         public virtual DbSet<Pessoas> Pessoas { get; set; }
         public virtual DbSet<Quotas> Quotas { get; set; }
         //public virtual DbSet<Socios> Socios { get; set; }
-        public virtual DbSet<FotografiasEventos> FotografiasEventos {get; set;}
+        //public virtual DbSet<FotografiasEventos> FotografiasEventos {get; set;}
 
         protected override void OnModelCreating (DbModelBuilder modelBuilder) {
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention> ();

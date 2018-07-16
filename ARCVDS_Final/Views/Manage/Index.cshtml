@@ -1,23 +1,15 @@
 ﻿@model ARCVDS_Final.Models.IndexViewModel
 @{
-    ViewBag.Title = "Manage your account";
+    ViewBag.Title = "Password mudada com sucesso!";
 }
+<div class="container">
+    <h2>@ViewBag.Title</h2>
+    <div class="rowlateral">
+        <div class="col-md-12">
+            @*Html.ActionLink("Change your password", "ChangePassword")*@
+            <a href="/Manage/ChangePassword" class="btn btn-success">Queres mudar novamente?</a>
 
-<h2>@ViewBag.Title.</h2>
-<p class="text-success">@ViewBag.StatusMessage</p>
-<div class="row">
-    <div class="col-md-8">
-        <p>
-            @if (Model.HasPassword)
-            {
-                @Html.ActionLink("Change your password", "ChangePassword")
-            }
-            else
-            {
-                @Html.ActionLink("Pick a password", "SetPassword")
-            }
-        </p>
-        <p>
+            @*<p>
             Phone Number: @(Model.PhoneNumber ?? "None") [
             @if (Model.PhoneNumber != null)
             {
@@ -70,6 +62,7 @@
                     <input type="submit" value="Remember Browser" class="btn btn-default"/>
                 </p>
             </form>
-        }
+        }*@
+        </div>
     </div>
 </div>

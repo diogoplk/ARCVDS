@@ -19,7 +19,7 @@ namespace ARCVDS_Final.Models {
         [Required]
         [Key]
         [DatabaseGenerated (DatabaseGeneratedOption.None)]
-        public int Pessoa_ID { get; set; }
+        public int Id { get; set; }
 
         //[Index(IsUnique = true)]
         //[Display(Name = "Nº Sócio")]
@@ -32,7 +32,7 @@ namespace ARCVDS_Final.Models {
         public string Nome { get; set; }
 
         [Required]
-        //[DataType (DataType.Date)]
+        [DataType (DataType.Date)]
         [DisplayFormat (DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display (Name = "Data Nascimento")]
         public DateTime data_Nascimento { get; set; }
@@ -84,8 +84,8 @@ namespace ARCVDS_Final.Models {
         public string numeroTelemovel { get; set; }
 
         //[Required]
-        //[DisplayFormat (DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        //[DataType (DataType.Date)]
+        [DisplayFormat (DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DataType (DataType.Date)]
         [Display(Name ="Data de Inscrição")]
         public DateTime dataEntradaClube { get; set; }
 
@@ -106,9 +106,7 @@ namespace ARCVDS_Final.Models {
             get; set;
         }
 
-        public virtual ICollection<Eventos> ListaEventos {
-            get;set;
-        }
+        public virtual ICollection<Eventos> ListaEventos {get;set;}
 
     }
 }

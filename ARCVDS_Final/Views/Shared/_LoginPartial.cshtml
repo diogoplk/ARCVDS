@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNet.Identity
-@if (Request.IsAuthenticated) {
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" })) {
+@if(Request.IsAuthenticated) {
+    using(Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" })) {
         @Html.AntiForgeryToken()
 
         <ul class="nav navbar-nav navbar-right">
@@ -8,12 +8,14 @@
                 <a href="#" class="dropdown-toggle btnBarra" data-toggle="dropdown">Bem-vindo @User.Identity.GetUserName()!<b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     @if(User.IsInRole("Socios")) {
-                    <li><a href="~/Pessoas/EditDados">Ver/Editar Dados Pessoais</a></li>
-                    <li><a href="javascript:document.getElementById('logoutForm').submit()">Sair</a></li>
+                        <li><a href="~/Pessoas/EditDados">Ver/Editar Dados Pessoais</a></li>
+                        <li><a href="~/Manage/ChangePassword">Alterar a Palavra-Chave</a></li>
+                        <li><a href="javascript:document.getElementById('logoutForm').submit()">Sair</a></li>
                     }
                     else {
-                    <li><a href="~/Pessoas/Index">Ver Sócios</a></li>
-                    <li><a href="javascript:document.getElementById('logoutForm').submit()">Sair</a></li>
+                        <li><a href="~/Manage/ChangePassword">Alterar a Palavra-Chave</a></li>
+                        <li><a href="~/Pessoas/Index">Ver Sócios</a></li>
+                        <li><a href="javascript:document.getElementById('logoutForm').submit()">Sair</a></li>
                     }
 
                 </ul>

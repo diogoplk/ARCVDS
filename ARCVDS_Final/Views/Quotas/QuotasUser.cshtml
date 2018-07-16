@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ARCVDS_Final.Models.Quotas>
 
 @{
-    ViewBag.Title = "QuotasUser";
+    ViewBag.Title = "Quotas Utilizador";
 }
 
 <h1><a style="color:black;">Será que tens as quotas em dia? Se não sabes estás no sítio correto!</a></h1>
@@ -44,7 +44,7 @@
             @Html.DisplayFor(modelItem => item.Paga)
         </td>
         <td>
-            @Html.ActionLink("Details", "Details", new { id=item.id_Quota })
+            @Html.ActionLink("Detalhes", "Details", new { id=item.id_Quota })
         </td>
     </tr>
 }

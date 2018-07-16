@@ -1,65 +1,65 @@
 ﻿@model ARCVDS_Final.Models.Pagamentos
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Editar";
 }
+<h2><a style="color:black;">Editar o Pagamento!</a></h2>
 
-<h2>Edit</h2>
-
-
-@using (Html.BeginForm())
-{
+@using(Html.BeginForm()) {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>Pagamentos</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.id_Pagamento)
+        <div class="container" flex-wrap style="background-color: rgba(255, 255, 255, 0.3); border-radius: 5px; text-align:center;">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.id_Pagamento)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Valor_Pagamento, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Valor_Pagamento, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Valor_Pagamento, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Valor_Pagamento, htmlAttributes: new { @class = "control-label col-md-2", @style = "color:black;" })
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.Valor_Pagamento, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Valor_Pagamento, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.data_Pagamento, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.data_Pagamento, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.data_Pagamento, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.data_Pagamento, htmlAttributes: new { @class = "control-label col-md-2", @style = "color:black;" })
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.data_Pagamento, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.data_Pagamento, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ultima_Ano_Pago, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ultima_Ano_Pago, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ultima_Ano_Pago, "", new { @class = "text-danger" })
+            @*<div class="form-group">
+                @Html.LabelFor(model => model.ultima_Ano_Pago, htmlAttributes: new { @class = "control-label col-md-2", @style = "color:black;" })
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.ultima_Ano_Pago, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ultima_Ano_Pago, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.QuotaFK, "QuotaFK", htmlAttributes: new { @class = "control-label col-md-2", @style = "color:black;" })
+                <div class="col-md-3">
+                    @Html.DropDownList("QuotaFK", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.QuotaFK, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.QuotaFK, "QuotaFK", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("QuotaFK", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.QuotaFK, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+            <div class="form-group">
+                <div class="col-md-12">
+                    <input type="submit" value="Guardar" class="btn btn-default" />
+                </div>
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+    <div>
+        <h3>
+            <a class="btn btn-primary" href="/Pagamentos/Index" style="color:white;">Voltar à lista!</a>
+        </h3>
+    </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

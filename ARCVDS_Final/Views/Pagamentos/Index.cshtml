@@ -3,49 +3,62 @@
 @{
     ViewBag.Title = "Index";
 }
+<style>
+    a {
+        color: black;
+    }
 
-<h2>Index</h2>
+        a:hover {
+            color: #3276b1;
+        }
+</style>
+<h1><a style="color:black;">Lista de Pagamentos dos Sócios!</a></h1>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Quota.Descricao)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Valor_Pagamento)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.data_Pagamento)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ultima_Ano_Pago)
-        </th>
-        <th></th>
-    </tr>
+<div class="containercenas" style="background-color: rgba(255, 255, 255, 0.3); border-radius: 5px; text-align:center;">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Quota.Pessoa.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model=>model.Quota.Descricao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Valor_Pagamento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.data_Pagamento)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.ultima_Ano_Pago)
+                </th>
+                <th></th>*@
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Quota.Descricao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Valor_Pagamento)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.data_Pagamento)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ultima_Ano_Pago)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id_Pagamento }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id_Pagamento }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id_Pagamento })
-        </td>
-    </tr>
-}
+        @foreach(var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quota.Pessoa.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quota.Descricao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Valor_Pagamento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.data_Pagamento)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.ultima_Ano_Pago)
+                    </td>*@
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id_Pagamento }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.id_Pagamento }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id_Pagamento })
+                </td>
+            </tr>
+        }
 
-</table>
+    </table>
+</div>

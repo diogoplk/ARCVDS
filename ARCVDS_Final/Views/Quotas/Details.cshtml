@@ -1,63 +1,69 @@
 ﻿@model ARCVDS_Final.Models.Quotas
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalhes";
 }
 
 <style>
-    dt{
-        text-align:left;
+    dt {
+        text-align: left;
+        color: black;
     }
 </style>
-<h2>Detalhe da Quota</h2>
+<h2><a style="color:black;">Detalhe da Quota</a></h2>
 
 <div>
-    <h4>Quotas</h4>
-<div class="containercenas"  style="background-color: rgba(255, 255, 255, 0.3); border-radius: 5px; text-align:center;">
-    <dl class="dl-horizontal">
-        <dt class="alinhar">
-            @Html.DisplayNameFor(model => model.Pessoa.Nome)
-        </dt>
+    <div class="containercenas" style="background-color: rgba(255, 255, 255, 0.3); border-radius: 5px; text-align:center;">
+        <dl class="dl-horizontal">
+            <dt class="alinhar">
+                @Html.DisplayNameFor(model => model.Pessoa.Nome)
+            </dt>
 
-        <dd class="alinhar">
-            @Html.DisplayFor(model => model.Pessoa.Nome)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Pessoa.Nome)
+            </dd>
 
-        <dt class="alinhar">
-            @Html.DisplayNameFor(model => model.ano_Quota)
-        </dt>
+            <dt class="alinhar">
+                @Html.DisplayNameFor(model => model.ano_Quota)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ano_Quota)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.ano_Quota)
+            </dd>
 
-        <dt class="alinhar">
-            @Html.DisplayNameFor(model => model.Valor_Quota)
-        </dt>
+            <dt class="alinhar">
+                @Html.DisplayNameFor(model => model.Valor_Quota)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Valor_Quota)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Valor_Quota)
+            </dd>
 
-        <dt class="alinhar">
-            @Html.DisplayNameFor(model => model.Descricao)
-        </dt>
+            <dt class="alinhar">
+                @Html.DisplayNameFor(model => model.Descricao)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Descricao)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Descricao)
+            </dd>
 
-        <dt class="alinhar">
-            @Html.DisplayNameFor(model => model.Paga)
-        </dt>
+            <dt class="alinhar">
+                @Html.DisplayNameFor(model => model.Paga)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Paga)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Paga)
+            </dd>
 
-    </dl>
+        </dl>
+    </div>
 </div>
-</div>
-<p>
-    <button class="btn btn-primary"><a href="~/Quotas/Index" style="color:white;">Voltar à lista!</a></button>
-</p>
+<h3>
+    @if(User.IsInRole("Socios")) {
+        <a href="/Quotas/QuotasUser" style="color:white;" class="btn btn-primary">Voltar à lista!</a>
+    }
+    else {
+        <a href="/Quotas/Index" style="color:white;" class="btn btn-primary">Voltar à lista!</a>
+    }
+
+</h3>
