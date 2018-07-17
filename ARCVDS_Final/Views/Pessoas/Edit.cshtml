@@ -123,7 +123,7 @@
                                 foreach(int opcaoID in Model.ListaBeneficios.Select(b => b.id_Beneficio)) {
                                     if(item.id_Beneficio == opcaoID) { selected = "checked"; }
                                 }
-                                <input disabled type="checkbox" name="opcoesEscolhidasDeB" value="@item.id_Beneficio" @selected /> @item.Categoria
+                                <input type="checkbox" name="opcoesEscolhidasDeB" value="@item.id_Beneficio" @selected /> @item.Categoria
                                 <br />
                             }
                         </div>
