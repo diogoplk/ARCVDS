@@ -21,14 +21,14 @@ namespace ARCVDS_Final.Models {
         public int Valor_Pagamento { get; set; }
 
         [Required]
+        [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        [DataType(DataType.Date)]
         [Display(Name = "Data Pagamento")]
-        public DateTime data_Pagamento { get; set; }
+        public DateTime? data_Pagamento { get; set; }
 
-        [Required]
-        [DataType(DataType.Date)]
-        public DateTime ultima_Ano_Pago { get; set; }
+        //[Required]
+        //[DataType(DataType.Date)]
+        //public DateTime ultima_Ano_Pago { get; set; }
 
         public string Email { get; set; }
         

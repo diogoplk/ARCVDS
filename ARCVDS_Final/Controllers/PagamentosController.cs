@@ -65,7 +65,8 @@ namespace ARCVDS_Final.Controllers
         // GET: Pagamentos/Create
         public ActionResult Create()
         {
-            ViewBag.QuotaFK = new SelectList(db.Quotas, "id_Quota", "Descricao");
+            ViewBag.PessoaFK = new SelectList(db.Quotas, "id_Quota", "PessoaFK");
+            //db.Quotas.Where(q => q.Pessoa.Nome)
             if(!User.IsInRole ("Admin") && !User.IsInRole ("Funcionarios")) {
                 return RedirectToAction ("AcessoRestrito", "Erros");
             }
@@ -80,7 +81,7 @@ namespace ARCVDS_Final.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_Pagamento,Valor_Pagamento,data_Pagamento,ultima_Ano_Pago,QuotaFK")] Pagamentos pagamentos, string data_Pagamento)
+        public ActionResult Create([Bind(Include = "id_Pagamento,Valor_Pagamento,data_Pagamento,QuotaFK")] Pagamentos pagamentos, string data_Pagamento)
         {
             //DateTime DataP = DateTime.Parse(data_Pagamento);
             //pagamentos.data_Pagamento = DataP;
@@ -95,7 +96,7 @@ namespace ARCVDS_Final.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.QuotaFK = new SelectList(db.Quotas, "id_Quota", "Descricao", pagamentos.QuotaFK);
+            //ViewBag.QuotaFK = new SelectList(db.Quotas, "id_Quota", "Descricao", pagamentos.QuotaFK);
             return View(pagamentos);
         }
 
@@ -111,7 +112,8 @@ namespace ARCVDS_Final.Controllers
             {
                 return RedirectToAction ("Index");
             }
-            ViewBag.QuotaFK = new SelectList(db.Quotas, "id_Quota", "Descricao", pagamentos.QuotaFK);
+            //ViewBag.PessoaFK = new SelectList(db.Quotas, "id_Quota", "PessoaFK");
+            ViewBag.QuotaFK = new SelectList(db.Quotas, "id_Quota", "PessoaFK", pagamentos.QuotaFK);
             if(!User.IsInRole ("Admin") && !User.IsInRole ("Funcionarios")) {
                 return RedirectToAction ("AcessoRestrito", "Erros");
             }
@@ -126,7 +128,7 @@ namespace ARCVDS_Final.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_Pagamento,Valor_Pagamento,data_Pagamento,ultima_Ano_Pago,QuotaFK")] Pagamentos pagamentos, FormCollection formCollection)
+        public ActionResult Edit([Bind(Include = "id_Pagamento,Valor_Pagamento,data_Pagamento,QuotaFK")] Pagamentos pagamentos, FormCollection formCollection)
         {
             pagamentos.data_Pagamento = DateTime.Parse(formCollection["data_Pagamento"]);
 
@@ -136,7 +138,7 @@ namespace ARCVDS_Final.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.QuotaFK = new SelectList(db.Quotas, "id_Quota", "Descricao", pagamentos.QuotaFK);
+            //ViewBag.QuotaFK = new SelectList(db.Quotas, "id_Quota", "Descricao", pagamentos.QuotaFK);
             return View(pagamentos);
         }
 

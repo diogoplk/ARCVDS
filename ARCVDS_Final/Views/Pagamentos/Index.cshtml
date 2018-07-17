@@ -13,6 +13,9 @@
         }
 </style>
 <h1><a style="color:black;">Lista de Pagamentos dos Sócios!</a></h1>
+<p>
+    <a class="btn btn-danger" href="~/Pagamentos/Create" style="color:white;">Novo Pagamento</a>
+</p>
 
 <div class="containercenas" style="background-color: rgba(255, 255, 255, 0.3); border-radius: 5px; text-align:center;">
     <table class="table">
@@ -21,10 +24,10 @@
                 @Html.DisplayNameFor(model => model.Quota.Pessoa.Nome)
             </th>
             <th>
-                @Html.DisplayNameFor(model=>model.Quota.Descricao)
+                @Html.DisplayNameFor(model => model.Quota.Descricao)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Valor_Pagamento)
+                @Html.DisplayNameFor(model => model.Valor_Pagamento)€
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.data_Pagamento)
@@ -44,7 +47,7 @@
                     @Html.DisplayFor(modelItem => item.Quota.Descricao)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Valor_Pagamento)
+                    @Html.DisplayFor(modelItem => item.Valor_Pagamento)€
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.data_Pagamento)

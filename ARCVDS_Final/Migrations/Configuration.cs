@@ -49,11 +49,11 @@ namespace ARCVDS_Final.Migrations
             context.SaveChanges ();
 
             var pag = new List<Pagamentos> {
-               new Pagamentos {id_Pagamento=1, Valor_Pagamento=12, data_Pagamento=new DateTime(2017,1,1), ultima_Ano_Pago=new DateTime(2016,1,1), QuotaFK=1},
-               new Pagamentos {id_Pagamento=2, Valor_Pagamento=12, data_Pagamento=new DateTime(2017,1,1), ultima_Ano_Pago=new DateTime(2016,1,1), QuotaFK=2},
-               new Pagamentos {id_Pagamento=3, Valor_Pagamento=12, data_Pagamento=new DateTime(2017,1,1), ultima_Ano_Pago=new DateTime(2016,1,1),Email="ricardo@gmail.com", QuotaFK=3},
-               new Pagamentos {id_Pagamento=4, Valor_Pagamento=12, data_Pagamento=new DateTime(2017,1,1), ultima_Ano_Pago=new DateTime(2016,1,1),Email="ricardo@gmail.com",QuotaFK=4},
-               new Pagamentos {id_Pagamento=5, Valor_Pagamento=12, data_Pagamento=new DateTime(2017,1,1), ultima_Ano_Pago=new DateTime(2016,1,1),Email="ricardo@gmail.com",QuotaFK=5},
+               new Pagamentos {id_Pagamento=1, Valor_Pagamento=12, data_Pagamento=new DateTime(2017,1,1),  QuotaFK=1},
+               new Pagamentos {id_Pagamento=2, Valor_Pagamento=12, data_Pagamento=new DateTime(2017,1,1), QuotaFK=2},
+               new Pagamentos {id_Pagamento=3, Valor_Pagamento=12, data_Pagamento=new DateTime(2017,1,1),Email="ricardo@gmail.com", QuotaFK=3},
+               new Pagamentos {id_Pagamento=4, Valor_Pagamento=12, data_Pagamento=new DateTime(2017,1,1),Email="ricardo@gmail.com",QuotaFK=4},
+               new Pagamentos {id_Pagamento=5, Valor_Pagamento=12, data_Pagamento=new DateTime(2017,1,1),Email="ricardo@gmail.com",QuotaFK=5},
             };
             pag.ForEach (aa => context.Pagamentos.AddOrUpdate (a => a.id_Pagamento,aa));
             context.SaveChanges ();

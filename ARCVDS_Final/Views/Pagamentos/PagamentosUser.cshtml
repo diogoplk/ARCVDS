@@ -18,15 +18,14 @@
                 @Html.DisplayNameFor(model => model.Quota.Descricao)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Valor_Pagamento)
+                @Html.DisplayNameFor(model => model.Valor_Pagamento)€
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.data_Pagamento)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Email)
+                @Html.DisplayNameFor(model => model.Quota.Pessoa.Nome)
             </th>
-            <th></th>
         </tr>
 
         @foreach(var item in Model) {
@@ -41,13 +40,13 @@
                 @Html.DisplayFor(modelItem => item.Quota.Descricao)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Valor_Pagamento)
+                @Html.DisplayFor(modelItem => item.Valor_Pagamento)€
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.data_Pagamento)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Email)
+                @Html.DisplayFor(modelItem => item.Quota.Pessoa.Nome)
             </td>
             <td>
                 @Html.ActionLink("Detalhes", "Details", new { id = item.id_Pagamento })
