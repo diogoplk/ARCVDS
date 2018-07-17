@@ -9,6 +9,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Collections.Generic;
 
 namespace ARCVDS_Final.Controllers
 {
@@ -142,6 +143,7 @@ namespace ARCVDS_Final.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            ViewBag.ListaObjetosDeB = db.Beneficios.OrderBy(b => b.Categoria).ToList();
             return View();
         }
 
@@ -150,8 +152,9 @@ namespace ARCVDS_Final.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register([Bind(Include= "Id,Nome,data_Nascimento,Sexo,Morada,Codigo_Postal,Nacionalidade,Email,Foto,numeroTelefone,numeroTelemovel,dataEntradaClube,UserName")]Pessoas pessoas , RegisterViewModel model)
+        public async Task<ActionResult> Register([Bind(Include= "Id,Nome,data_Nascimento,Sexo,Morada,Codigo_Postal,Nacionalidade,Email,Foto,numeroTelefone,numeroTelemovel,dataEntradaClube,UserName")]Pessoas pessoas , RegisterViewModel model, string[] opcoesEscolhidasDeB)
         {
+
 
             model.Email = pessoas.Email;
             pessoas.UserName = pessoas.Email;
@@ -166,6 +169,16 @@ namespace ARCVDS_Final.Controllers
             }
 
             pessoas.Id = novaPessoa;
+
+            List<Beneficios> listaDeObjetosDeBEscolhidos = new List<Beneficios>();
+            foreach(string item in opcoesEscolhidasDeB) {
+                //procurar o objeto de B
+                Beneficios b = db.Beneficios.Find(Convert.ToInt32(item));
+                // adicioná-lo à lista
+                listaDeObjetosDeBEscolhidos.Add(b);
+            }
+
+            pessoas.ListaBeneficios = listaDeObjetosDeBEscolhidos;
 
             if (ModelState.IsValid)
             {
@@ -191,6 +204,7 @@ namespace ARCVDS_Final.Controllers
             }
 
             // If we got this far, something failed, redisplay form
+            ViewBag.ListaObjetosDeB = db.Beneficios.OrderBy(b => b.Categoria).ToList();
             return View(model);
         }
 

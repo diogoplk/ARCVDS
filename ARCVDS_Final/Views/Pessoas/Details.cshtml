@@ -7,7 +7,7 @@
 <style>
     dt {
         text-align: left;
-        color:black;
+        color: black;
     }
 </style>
 <h2><a style="color:black;">Os seus detalhes</a></h2>
@@ -94,20 +94,32 @@
                 @Html.DisplayFor(model => model.dataEntradaClube)
             </dd>
 
-            @*<dt class="alinhar">
-                @Html.DisplayNameFor(model => model.UserName)
-            </dt>
+            <div class="col-md-12">
+                @{ string selected = "";}
+                @foreach(var item in ViewBag.ListaObjetosDeB) {
+                    selected = "";
+                    foreach(int opcaoID in Model.ListaBeneficios.Select(b => b.id_Beneficio)) {
+                        if(item.id_Beneficio == opcaoID) { selected = "checked"; }
+                    }
+                    <input type="checkbox" name="opcoesEscolhidasDeB" value="@item.id_Beneficio" @selected disabled /> @item.Categoria
+                    <br />
+                }
+            </div>
 
-            <dd>
-                @Html.DisplayFor(model => model.UserName)
-            </dd>*@
+            @*<dt class="alinhar">
+                    @Html.DisplayNameFor(model => model.UserName)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.UserName)
+                </dd>*@
 
         </dl>
     </div>
-    </div>
+</div>
 <h1>
     @if(!User.IsInRole("Funcionarios") && !User.IsInRole("Admin")) {
-        <a href="/Quotas/QuotasUser" style="color:white;" class="btn btn-primary">Voltar à lista!</a>
+        <a href="/Pessoas/Index" style="color:white;" class="btn btn-primary">Voltar à lista!</a>
     }
 
     else {

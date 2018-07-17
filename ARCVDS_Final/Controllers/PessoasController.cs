@@ -59,17 +59,21 @@ namespace ARCVDS_Final.Controllers {
                 return RedirectToAction("AcessoRestrito", "Erros");
             }
             else {
+                ViewBag.ListaObjetosDeB = db.Beneficios.OrderBy(b => b.Categoria).ToList();
                 return View(pessoas);
             }
         }
 
         // GET: Pessoas/Create
         public ActionResult Create() {
+
+            
             if(!User.IsInRole("Admin") && !User.IsInRole("Funcionarios")) {
                 return RedirectToAction("AcessoRestrito", "Erros");
             }
             else {
                 //return View (db.Beneficios.ToList ());
+                ViewBag.ListaObjetosDeB = db.Beneficios.OrderBy(b => b.Categoria).ToList();
                 return View();
             }
         }
@@ -79,11 +83,7 @@ namespace ARCVDS_Final.Controllers {
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Nome,data_Nascimento,Sexo,Morada,Codigo_Postal,Nacionalidade,Email,numeroTelefone,numeroTelemovel,dataEntradaClube,UserName")] Pessoas pessoas, string data_Nascimento) {
-
-            //try and cactch
-
-
+        public ActionResult Create([Bind(Include = "Id,Nome,data_Nascimento,Sexo,Morada,Codigo_Postal,Nacionalidade,Email,numeroTelefone,numeroTelemovel,dataEntradaClube,UserName")] Pessoas pessoas, string data_Nascimento, string[] opcoesEscolhidasDeB) {
 
             pessoas.dataEntradaClube = DateTime.Today;
 
@@ -91,6 +91,14 @@ namespace ARCVDS_Final.Controllers {
             pessoas.data_Nascimento = datal;
 
             pessoas.UserName = pessoas.Email;
+
+            if(opcoesEscolhidasDeB == null) {
+                ModelState.AddModelError("", "Necessita escolher pelo menos um valor de B para associar ao seu objeto de A.");
+                // gerar a lista de objetos de B que podem ser associados a A
+                ViewBag.ListaObjetosDeB = db.Beneficios.OrderBy(b => b.Categoria).ToList();
+                // devolver controlo à View
+                return View(pessoas);
+            }
 
             int novaPessoa = 0;
             try {
@@ -101,16 +109,29 @@ namespace ARCVDS_Final.Controllers {
             }
             pessoas.Id = novaPessoa;
 
+            List<Beneficios> listaDeObjetosDeBEscolhidos = new List<Beneficios>();
+            foreach(string item in opcoesEscolhidasDeB) {
+                //procurar o objeto de B
+                Beneficios b = db.Beneficios.Find(Convert.ToInt32(item));
+                // adicioná-lo à lista
+                listaDeObjetosDeBEscolhidos.Add(b);
+            }
+
+            pessoas.ListaBeneficios = listaDeObjetosDeBEscolhidos;
+
             if(ModelState.IsValid) {
                 db.Pessoas.Add(pessoas);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(pessoas);
+
         }
 
         // GET: Pessoas/Edit/5
         public ActionResult Edit(int? id) {
+
+            //ViewBag.ListaObjetosDeB = db.Beneficios.OrderBy(b => b.Categoria).ToList();
             if(id == null) {
                 return RedirectToAction("Edit");
             }
@@ -131,6 +152,8 @@ namespace ARCVDS_Final.Controllers {
                 //return RedirectToAction ("Index","Home");
             }
             else {
+
+                ViewBag.ListaObjetosDeB = db.Beneficios.OrderBy(b => b.Categoria).ToList();
                 return View(pessoas);
             }
         }
@@ -141,7 +164,7 @@ namespace ARCVDS_Final.Controllers {
         [HttpPost]
         [ValidateAntiForgeryToken]
         //[Authorize(Roles =("Socios, Funcionarios,Admin"))]
-        public ActionResult Edit([Bind(Include = "Id,Nome,data_Nascimento,Sexo,Morada,Codigo_Postal,Nacionalidade,Email,numeroTelefone,numeroTelemovel,dataEntradaClube,UserName")] Pessoas pessoas, FormCollection formCollection) {
+        public ActionResult Edit([Bind(Include = "Id,Nome,data_Nascimento,Sexo,Morada,Codigo_Postal,Nacionalidade,Email,numeroTelefone,numeroTelemovel,dataEntradaClube,UserName")] Pessoas pessoas, FormCollection formCollection, string[] opcoesEscolhidasDeB) {
 
             ////User currentUser = (User)Session["CurrentUser"];
             //string endEmail = TempData["socioUsername"].ToString();
@@ -155,12 +178,65 @@ namespace ARCVDS_Final.Controllers {
             pessoas.data_Nascimento = DateTime.Parse(formCollection["data_Nascimento"]);
             pessoas.dataEntradaClube = DateTime.Parse(formCollection["dataEntradaClube"]);
 
+            var aa = db.Pessoas.Include(b => b.ListaBeneficios).Where(b => b.Id == pessoas.Id).SingleOrDefault();
+
+
             if(ModelState.IsValid) {
-                db.Entry(pessoas).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+
+                aa.Codigo_Postal = pessoas.Codigo_Postal;
+                aa.data_Nascimento = pessoas.data_Nascimento;
+                aa.Email = pessoas.Email;
+                aa.Morada = pessoas.Morada;
+                aa.Nacionalidade = pessoas.Nacionalidade;
+                aa.Nome = pessoas.Nome;
+                aa.numeroTelefone = pessoas.numeroTelefone;
+                aa.numeroTelemovel = pessoas.numeroTelemovel;
+
+
+                //db.Entry(pessoas).State = EntityState.Modified;
+                //db.SaveChanges();
+                //return RedirectToAction("Index");
             }
-            return View(pessoas);
+            else {
+                ViewBag.ListaObjetosDeB = db.Beneficios.OrderBy(b => b.Categoria).ToList();
+                return View(pessoas);
+            }
+            if(TryUpdateModel(aa, "", new string[] { nameof(aa.Codigo_Postal), nameof(aa.data_Nascimento), nameof(aa.ListaBeneficios), nameof(aa.Email), nameof(aa.Morada), nameof(aa.Nacionalidade), nameof(aa.Nome), nameof(aa.numeroTelefone), nameof(aa.numeroTelemovel) })) {
+
+                // obter a lista de elementos de B
+                var elementosDeB = db.Beneficios.ToList();
+
+                if(opcoesEscolhidasDeB != null) {
+                    // se existirem opções escolhidas, vamos associá-las
+                    foreach(var bb in elementosDeB) {
+                        if(opcoesEscolhidasDeB.Contains(bb.id_Beneficio.ToString())) {
+                            // se uma opção escolhida ainda não está associada, cria-se a associação
+                            if(!aa.ListaBeneficios.Contains(bb)) {
+                                aa.ListaBeneficios.Add(bb);
+                            }
+                        }
+                        else {
+                            // caso exista associação para uma opção que não foi escolhida, 
+                            // remove-se essa associação
+                            aa.ListaBeneficios.Remove(bb);
+                        }
+                    }
+                }
+                else {
+                    // não existem opções escolhidas!
+                    // vamos eliminar todas as associações
+                    foreach(var bb in elementosDeB) {
+                        if(aa.ListaBeneficios.Contains(bb)) {
+                            aa.ListaBeneficios.Remove(bb);
+                        }
+                    }
+                }
+                db.SaveChanges();
+                //return View(pessoas);
+            }
+
+            ViewBag.ListaObjetosDeB = db.Beneficios.OrderBy(b => b.Categoria).ToList();
+            return RedirectToAction("Index");
         }
 
         // GET: Pessoas/Delete/5

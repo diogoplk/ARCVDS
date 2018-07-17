@@ -5,64 +5,71 @@
     ViewBag.Title = "Register";
 }
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "rowlateral", role = "form" }))
-{
+@using(Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "rowlateral", role = "form" })) {
     @Html.AntiForgeryToken()
     <h2 style="color:black;">Queres ser sócio ? Dá-lhe!</h2>
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
 
-<div class="container flex-wrap">
-        <div class="col-md-4" >
-            @Html.EditorFor(m => m.pessoas.Email,new { htmlAttributes = new { @class = "form-control",@maxlength = "50",@placeholder = "Email"} })
+    <div class="container flex-wrap">
+        <div class="col-md-4">
+            @Html.EditorFor(m => m.pessoas.Email, new { htmlAttributes = new { @class = "form-control", @maxlength = "50", @placeholder = "Email" } })
         </div>
-        <div class="col-md-4" >
-            @Html.PasswordFor(m=>m.Password,new { @class = "form-control",@placeholder = "Palavra-passe",@style = "width: 300px" })
+        <div class="col-md-4">
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Palavra-passe", @style = "width: 300px" })
         </div>
-        <div class="col-md-4" >
-            @Html.PasswordFor(m=>m.ConfirmPassword,new { @class = "form-control",@placeholder = "Repete Palavra-passe",@style = "width:300px;" })
-        </div>
-
-    @*DIV para cenas pessoais*@
-
-        <div class="col-md-4" >
-            @Html.EditorFor(m => m.pessoas.Nome, new { htmlAttributes = new { @class = "form-control",@maxlength = "50",@placeholder = "Nome" } })
-        </div>
-    
-        <div class="col-md-4"  >
-            @Html.EditorFor(m => m.pessoas.data_Nascimento, new { htmlAttributes = new { @class = "form-control",@placeholder = "Data Nascimento" } })
+        <div class="col-md-4">
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @placeholder = "Repete Palavra-passe", @style = "width:300px;" })
         </div>
 
-        <div class="col-md-4" >
-            @Html.EditorFor(m => m.pessoas.Sexo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Sexo",@maxlength="1" } })
-        </div>
-    @* 3333333 *@
+        @*DIV para cenas pessoais*@
 
-        <div class="col-md-4" >
-            @Html.EditorFor(m => m.pessoas.Morada, new { htmlAttributes = new { @class = "form-control", @placeholder = "Morada",@maxlength = "50" } })
-        </div>
-
-        <div class="col-md-4" >
-            @Html.EditorFor(m => m.pessoas.Codigo_Postal, new { htmlAttributes = new { @class = "form-control", @placeholder = "Código Postal",@maxlength = "25" } })
-        </div>
-        <div class="col-md-4 " >
-            @Html.EditorFor(m => m.pessoas.Nacionalidade, new { htmlAttributes = new { @class = "form-control", @placeholder = "Nacionalidade",@maxlength = "30" } })
-        </div>
-    @* 33 *@
-
-        <div class="col-md-8" >
-            @Html.EditorFor(m => m.pessoas.numeroTelefone, new { htmlAttributes = new { @class = "form-control", @placeholder = "Número Telefone",@maxlength = "13" } })
+        <div class="col-md-4">
+            @Html.EditorFor(m => m.pessoas.Nome, new { htmlAttributes = new { @class = "form-control", @maxlength = "50", @placeholder = "Nome" } })
         </div>
 
         <div class="col-md-4">
-            @Html.EditorFor(m => m.pessoas.numeroTelemovel, new { htmlAttributes = new { @class = "form-control", @placeholder = "Número Telomovel",@maxlength = "13" } })
+            @Html.EditorFor(m => m.pessoas.data_Nascimento, new { htmlAttributes = new { @class = "form-control", @placeholder = "Data Nascimento" } })
         </div>
-    @*
-    <div>
-        <input type="file" name="foto" id="foto" />
+
+        <div class="col-md-4">
+            @Html.EditorFor(m => m.pessoas.Sexo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Sexo", @maxlength = "1" } })
+        </div>
+        @* 3333333 *@
+
+        <div class="col-md-4">
+            @Html.EditorFor(m => m.pessoas.Morada, new { htmlAttributes = new { @class = "form-control", @placeholder = "Morada", @maxlength = "50" } })
+        </div>
+
+        <div class="col-md-4">
+            @Html.EditorFor(m => m.pessoas.Codigo_Postal, new { htmlAttributes = new { @class = "form-control", @placeholder = "Código Postal", @maxlength = "25" } })
+        </div>
+        <div class="col-md-4 ">
+            @Html.EditorFor(m => m.pessoas.Nacionalidade, new { htmlAttributes = new { @class = "form-control", @placeholder = "Nacionalidade", @maxlength = "30" } })
+        </div>
+        @* 33 *@
+
+        <div class="col-md-8">
+            @Html.EditorFor(m => m.pessoas.numeroTelefone, new { htmlAttributes = new { @class = "form-control", @placeholder = "Número Telefone", @maxlength = "13" } })
+        </div>
+
+        <div class="col-md-4">
+            @Html.EditorFor(m => m.pessoas.numeroTelemovel, new { htmlAttributes = new { @class = "form-control", @placeholder = "Número Telomovel", @maxlength = "13" } })
+        </div>
+        <div class="container">
+            <label class="control-label col-md-2" style="color:black;">Benefícios</label>
+            @{ string selected = "";}
+            @foreach(var item in ViewBag.ListaObjetosDeB) {
+                <input checked type="checkbox" name="opcoesEscolhidasDeB" value="@item.id_Beneficio" @selected /> @item.Categoria
+                <br />
+            }
+        </div>
+        @*
+            <div>
+                <input type="file" name="foto" id="foto" />
+            </div>
+        *@
     </div>
-    *@
-</div>
     <div class="form-group">
         <div class="col-md-12">
             <input type="submit" class="btn btn-default" value="Criar uma Conta" />
@@ -71,7 +78,7 @@
     <p class="col-md-12">
         <a class="btn btn-danger" href="Login/Account">Já tens uma conta?</a>
     </p>
-<hr />
+    <hr />
 }
 
 @section Scripts {
